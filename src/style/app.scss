@@ -135,7 +135,7 @@ body {
 		* {
 			flex: 1 1 0;
 			border: black 1px solid;
-			padding: 5px;
+			padding: 10px;
 		}
 	}
 }
@@ -151,9 +151,15 @@ body {
 		display: flex;
 		gap: 5px;
 		input {
+			font-size: 1rem;
 			flex-basis: 100%;
 			padding: 0 10px;
 			outline: rgba(0, 0, 0, 0.5) 1px dashed;
+		}
+	}
+	.entry-edit-button {
+		&:hover {
+			outline: 1px gray solid;
 		}
 	}
 	margin: 5px;
