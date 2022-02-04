@@ -127,7 +127,10 @@ const moveListItem = (e) => {
 
 	switch (clickedButtonType) {
 		case buttonClassTypes.up:
-			clickedEntry.parentElement.insertBefore(clickedEntry, listArray[listItemIndex - 1]);
+			clickedEntry.parentElement.insertBefore(
+				clickedEntry,
+				listArray[listItemIndex - 1]
+			);
 			break;
 		case buttonClassTypes.down:
 			clickedEntry.parentElement.insertBefore(
@@ -141,8 +144,11 @@ const moveListItem = (e) => {
 };
 
 const createDeleteEntryButton = () =>
-	createCustomNode('button', '<i class="fas fa-trash-alt"></i>', 'delete-entry-button', (e) =>
-		e.target.closest('.list-entry').remove()
+	createCustomNode(
+		'button',
+		'<i class="fas fa-trash-alt"></i>',
+		'delete-entry-button',
+		(e) => e.target.closest('.list-entry').remove()
 	);
 
 const createEntryButtons = () => {
@@ -186,28 +192,40 @@ const createListNodeEntryInput = () => {
 	addButton.innerText = 'Add';
 	const entryInput = document.createElement('input');
 	entryInput.placeholder = 'List entry name';
-	ListNodeEntryInput.appendChild(entryInput);
-	ListNodeEntryInput.appendChild(addButton);
+	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton]);
 	return ListNodeEntryInput;
 };
 
 const createListDeleteButton = () =>
-	createCustomNode('button', '<i class="fas fa-trash-alt"></i>', 'delete-list-button', (e) =>
-		e.target.closest('.list-container').remove()
+	createCustomNode(
+		'button',
+		'<i class="fas fa-trash-alt"></i>',
+		'delete-list-button',
+		(e) => e.target.closest('.list-container').remove()
 	);
+
+const createListEntryContainer = () =>
+	createCustomNode('main', null, 'list-entry-container');
+
+const createListNodeHeader = (listInputName) => {
+	const listHeader = document.createElement('header');
+	const listName = document.createElement('h2');
+	listName.innerText = listInputName;
+	addElementsToContainer(listHeader, [listName, createListDeleteButton()]);
+	return listHeader;
+};
 
 const createListNode = (userInputName) => {
 	if (userInputName > '') {
 		const listContainer = createCustomNode('div', null, 'list-container');
-		const listHeader = document.createElement('header');
-		const listName = document.createElement('h2');
-		listName.innerText = userInputName;
-		listHeader.appendChild(listName);
-		listHeader.appendChild(createListDeleteButton());
-		const listEntryContainer = createCustomNode('main', null, 'list-entry-container');
-		[listHeader, createListNodeEntryInput(), listEntryContainer].forEach((element) => {
-			listContainer.appendChild(element);
-		});
+
+		const listHeader = createListNodeHeader(userInputName);
+
+		addElementsToContainer(listContainer, [
+			listHeader,
+			createListNodeEntryInput(),
+			createListEntryContainer(),
+		]);
 		return listContainer;
 	} else {
 		alert('List name cannot be empty');
