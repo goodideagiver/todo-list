@@ -1,19 +1,24 @@
 const mainListNodeContainer = document.querySelector('#listsContainer');
 const addListButton = document.querySelector('#addList');
 
-const getListEntryIndex = (e) => {
-	const listEntry = e.target.closest('.list-entry');
+const getListEntryIndex = (element) => {
+	const listEntry = element.closest('.list-entry');
 	const allParentListElements = listEntry.parentElement.children;
 	let foundIndex;
 	for (let i = 0; i < allParentListElements.length; i++) {
 		foundIndex =
-			allParentListElements[i] === listEntry ? [i] : 'match not found';
+			allParentListElements[i] === listEntry ? i : 'match not found';
+		if (i === foundIndex) {
+			break;
+		}
 	}
 	return foundIndex;
 };
 
-const moveListItem = (e, direction) => {
-	console.log(e, direction);
+const moveListItem = (e) => {
+	const clickedButton = e.target;
+	const listItemIndex = getListEntryIndex(clickedButton);
+	console.log(listItemIndex);
 };
 
 const createDeleteButton = () => {
@@ -33,11 +38,11 @@ const createUpDownButtons = () => {
 	buttonsContainer.classList.add('up-down-container');
 	up.innerHTML = '<i class="fas fa-angle-up"></i>';
 	down.innerHTML = '<i class="fas fa-angle-down"></i>';
-	up.addEventListener('click', () => moveListItem(event, 'up'));
-	down.addEventListener('click', () => moveListItem(event, 'down'));
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
 	});
+	up.addEventListener('click', moveListItem);
+	down.addEventListener('click', moveListItem);
 	return buttonsContainer;
 };
 
