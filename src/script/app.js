@@ -217,15 +217,13 @@ const createListNodeEntryInput = () => {
 	return ListNodeEntryInput;
 };
 
-const createListDeleteButton = () => {
-	const deleteButton = document.createElement('button');
-	deleteButton.classList.add('delete-list-button');
-	deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-	deleteButton.addEventListener('click', () => {
-		deleteButton.closest('.list-container').remove();
-	});
-	return deleteButton;
-};
+const createListDeleteButton = () =>
+	createCustomNode(
+		'button',
+		'<i class="fas fa-trash-alt"></i>',
+		'delete-list-button',
+		(e) => e.target.closest('.list-container').remove()
+	);
 
 const createListNode = (userInputName) => {
 	if (userInputName > '') {
