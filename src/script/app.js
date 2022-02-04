@@ -156,15 +156,13 @@ const moveListItem = (e) => {
 	}
 };
 
-const createDeleteEntryButton = () => {
-	const deleteButton = document.createElement('button');
-	deleteButton.classList.add('delete-entry-button');
-	deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-	deleteButton.addEventListener('click', () => {
-		deleteButton.closest('.list-entry').remove();
-	});
-	return deleteButton;
-};
+const createDeleteEntryButton = () =>
+	createCustomNode(
+		'button',
+		'<i class="fas fa-trash-alt"></i>',
+		'delete-entry-button',
+		(e) => e.target.closest('.list-entry').remove()
+	);
 
 const createEntryButtons = () => {
 	const entryButtonsContainer = createCustomNode(
