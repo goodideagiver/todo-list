@@ -57,10 +57,14 @@ const createListNav = () => {
 	const entryInput = document.createElement('input');
 	entryInput.placeholder = 'List entry name';
 	addButton.addEventListener('click', () => {
-		const entryContainer = addButton.parentElement;
-		entryContainer.parentElement
-			.querySelector('.list-entry-container')
-			.appendChild(createListEntry(entryInput.value));
+		if (entryInput.value > '') {
+			const entryContainer = addButton.parentElement;
+			entryContainer.parentElement
+				.querySelector('.list-entry-container')
+				.appendChild(createListEntry(entryInput.value));
+		} else {
+			alert('Cannot add an empty list entry');
+		}
 	});
 	listForm.appendChild(entryInput);
 	listForm.appendChild(addButton);
