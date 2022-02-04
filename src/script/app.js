@@ -1,3 +1,6 @@
+const mainListNodeContainer = document.querySelector('#listsContainer');
+const addListButton = document.querySelector('#addList');
+
 const createDeleteButton = () => {
 	const deleteButton = document.createElement('button');
 	deleteButton.classList.add('delete-entry-button');
@@ -37,3 +40,47 @@ const createListEntry = (e, userInputText) => {
 	entryLine.appendChild(createEntryButtons());
 	return entryLine;
 };
+
+const getUserListName = () => {
+	return document.querySelector('#listName').value;
+};
+
+const createListNav = () => {
+	const listForm = document.createElement('form');
+	listForm.classList.add('list-nav');
+	const addButton = document.createElement('button');
+	addButton.innerText = 'Add';
+	const entryInput = document.createElement('input');
+	listForm.appendChild(entryInput);
+	listForm.appendChild(addButton);
+	return listForm;
+};
+
+const createListNode = (userInputName) => {
+	if (getUserListName() > '') {
+		const listContainer = document.createElement('div');
+		listContainer.classList.add('list-container');
+		const listHeader = document.createElement('header');
+		const listDelete = createDeleteButton();
+		const listName = document.createElement('h2');
+		listName.innerText = userInputName;
+		listHeader.appendChild(listName);
+		listHeader.appendChild(listDelete);
+
+		const listEntryContainer = document.createElement('main');
+		listEntryContainer.classList.add('list-entry-container');
+
+		[listHeader, listEntryContainer].forEach((element) => {
+			listContainer.appendChild(element);
+		});
+		console.log(listContainer);
+		return listContainer;
+	} else {
+		alert('List name cannot be empty');
+		return;
+	}
+};
+
+addListButton.addEventListener('click', () => {
+	mainListNodeContainer.appendChild(createListNode(getUserListName()));
+});
