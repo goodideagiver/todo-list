@@ -30,7 +30,7 @@ const createEntryButtons = () => {
 	return entryButtonsContainer;
 };
 
-const createListEntry = (e, userInputText) => {
+const createListEntry = (userInputText) => {
 	const entryLine = document.createElement('div');
 	const entryText = document.createElement('section');
 	entryText.innerText = userInputText;
@@ -46,14 +46,29 @@ const getUserListName = () => {
 };
 
 const createListNav = () => {
-	const listForm = document.createElement('form');
+	const listForm = document.createElement('section');
 	listForm.classList.add('list-nav');
 	const addButton = document.createElement('button');
+	addButton.classList.add('add-list-entry');
 	addButton.innerText = 'Add';
 	const entryInput = document.createElement('input');
+	entryInput.placeholder = 'List entry name';
+	addButton.addEventListener('click', () => {
+		const entryContainer = addButton.parentElement;
+		entryContainer.parentElement
+			.querySelector('.list-entry-container')
+			.appendChild(createListEntry(entryInput.value));
+	});
 	listForm.appendChild(entryInput);
 	listForm.appendChild(addButton);
 	return listForm;
+};
+
+const createListDeleteButton = () => {
+	const deleteButton = document.createElement('button');
+	deleteButton.classList.add('delete-list-button');
+	deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+	return deleteButton;
 };
 
 const createListNode = (userInputName) => {
@@ -61,7 +76,7 @@ const createListNode = (userInputName) => {
 		const listContainer = document.createElement('div');
 		listContainer.classList.add('list-container');
 		const listHeader = document.createElement('header');
-		const listDelete = createDeleteButton();
+		const listDelete = createListDeleteButton();
 		const listName = document.createElement('h2');
 		listName.innerText = userInputName;
 		listHeader.appendChild(listName);
@@ -70,9 +85,11 @@ const createListNode = (userInputName) => {
 		const listEntryContainer = document.createElement('main');
 		listEntryContainer.classList.add('list-entry-container');
 
-		[listHeader, listEntryContainer].forEach((element) => {
-			listContainer.appendChild(element);
-		});
+		[listHeader, , createListNav(), listEntryContainer].forEach(
+			(element) => {
+				listContainer.appendChild(element);
+			}
+		);
 		console.log(listContainer);
 		return listContainer;
 	} else {
