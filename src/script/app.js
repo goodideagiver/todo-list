@@ -30,7 +30,7 @@ const createEditModeElements = (userText) => {
 	const editModeWrapper = document.createElement('div');
 	editModeWrapper.classList.add('edit-mode');
 	const listInput = document.createElement('input');
-	const buttonsWrapper = document.createElement('section');
+	const buttonsWrapper = createEditModeButtons();
 	listInput.value = userText;
 	buttonsWrapper.classList.add('edit-mode-buttons');
 	[listInput, buttonsWrapper].forEach((element) =>
