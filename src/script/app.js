@@ -107,7 +107,11 @@ const moveListItem = (e) => {
 		listArray.length - 1 === listItemIndex &&
 		clickedButtonType === buttonClassTypes.down
 	) {
-		alert('Cant move down entry that is last');
+		console.log();
+		clickedEntry.parentElement.insertBefore(
+			clickedEntry,
+			clickedEntry.parentElement.firstElementChild
+		);
 		return;
 	} else if (
 		listItemIndex === 0 &&
@@ -280,9 +284,6 @@ createFullList(
 	'Thats fun',
 	createMultipleEntries(
 		'Check links at the bottom to check out more of my projects',
-		'Lorem ipsum',
-		'Lorem ipsum',
-		'Lorem ipsum',
 		'Lorem ipsum'
 	)
 );
