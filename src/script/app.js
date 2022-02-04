@@ -36,7 +36,6 @@ const editModeRestore = (element, oldText = '') => {
 	const listEntry = element.closest('.list-entry');
 	const userText =
 		oldText > '' ? oldText : listEntry.querySelector('input').value;
-	console.log(listEntry, userText);
 	const editedEntry = createListEntry(userText);
 	listEntry.parentElement.insertBefore(editedEntry, listEntry);
 	listEntry.remove();
@@ -228,7 +227,6 @@ const createListNode = (userInputName) => {
 				listContainer.appendChild(element);
 			}
 		);
-		console.log(listContainer);
 		return listContainer;
 	} else {
 		alert('List name cannot be empty');
@@ -245,10 +243,10 @@ addListButton.addEventListener('click', () => {
 	}
 });
 
-const createMultipleEntries = (...entrys) => {
+const createMultipleEntries = (entries) => {
 	let entryNodeList = [];
-	for (let i = 0; i < entrys.length; i++) {
-		entryNodeList.push(createListEntry(entrys[i]));
+	for (let i = 0; i < entries.length; i++) {
+		entryNodeList.push(createListEntry(entries[i]));
 	}
 	return entryNodeList;
 };
@@ -262,27 +260,32 @@ const createFullList = (listName, nodeList = 0) => {
 	}
 };
 
-createFullList(
-	'Test list',
-	createMultipleEntries(
+const createListObject = (listName, ...entries) => {
+	const obj = {
+		name: listName,
+		entries: entries,
+	};
+	return obj;
+};
+
+const lists = [
+	createListObject(
 		'Test 1',
 		'This is entry test number two',
 		'You can edit and move entries, (Even in edit mode!)'
-	)
-);
-
-createFullList(
-	'Second list, wow',
-	createMultipleEntries(
+	),
+	createListObject(
+		'Second list, wow',
 		'You can create as many lists as you like',
 		'Hovewer the lists are stored until you reset or close this website (there is no backend)'
-	)
-);
-
-createFullList(
-	'Thats fun',
-	createMultipleEntries(
+	),
+	createListObject(
+		'Thats fun',
 		'Check links at the bottom to check out more of my projects',
 		'Lorem ipsum'
-	)
-);
+	),
+];
+
+lists.forEach((list) => {
+	createFullList(list.name, createMultipleEntries(list.entries));
+});
