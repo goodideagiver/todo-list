@@ -10,16 +10,18 @@
 
 body {
 	color: black;
-	background-color: gray;
+	min-height: 100vh;
 }
 
 .main-app-nav {
-	padding: 5px;
+	padding: 20px;
 	align-items: center;
-	color: white;
-	background-color: rgb(23, 37, 37);
+	color: black;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	display: flex;
 	gap: 10px;
+	margin-bottom: 20px;
 	form {
 		text-align: center;
 		flex-wrap: wrap;
@@ -29,14 +31,18 @@ body {
 		gap: 10px;
 		display: flex;
 		flex: 1 1 10%;
+		label {
+			text-align: center;
+			font-weight: bold;
+		}
 		input {
 			padding: 0 5px;
 			flex: 1 1 0;
 			background-color: transparent;
-			border: 1px white dashed;
-			background-color: rgba(128, 128, 128, 0.397);
-			color: white;
-			border-radius: 2px;
+			border: 1px black dashed;
+			background-color: white;
+			color: black;
+			border-radius: 5px;
 		}
 	}
 	button {
@@ -44,8 +50,11 @@ body {
 		padding: 5px 10px;
 		display: flex;
 		gap: 10px;
-		background-color: darkslategray;
-		color: white;
+		background-color: white;
+		color: black;
+		border-radius: 5px;
+		border: black 1px solid;
+		text-align: center;
 		cursor: pointer;
 		&:hover {
 			opacity: 0.9;
@@ -58,15 +67,22 @@ body {
 
 .main-lists-container {
 	gap: 10px;
-	padding: 10px;
+	padding: 20px;
 	display: flex;
 	flex-wrap: wrap;
 	> * {
-		flex: 1 1 600px;
+		flex: 1 1 400px;
 	}
+	max-width: 1200px;
+	margin: auto;
 }
 
 .list-container {
+	&:hover {
+		.delete-list-button {
+			opacity: 1;
+		}
+	}
 	* {
 		border-radius: 5px;
 	}
@@ -79,21 +95,22 @@ body {
 		}
 	}
 	.delete-list-button {
+		opacity: 0;
 		padding: 10px;
 		font-size: 20px;
 		border-radius: 50px;
+		transition: 0.2s;
 		&:hover {
 			outline: 1px gray solid;
 		}
 	}
 	background-color: white;
-	border: 1px solid black;
 	border-radius: 5px;
-	box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	header {
 		display: flex;
 		gap: 10px;
-		justify-content: center;
+		justify-content: flex-start;
 		padding: 10px;
 		align-items: center;
 	}

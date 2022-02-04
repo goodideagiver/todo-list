@@ -183,6 +183,4 @@ addListButton.addEventListener('click', () => {
 	}
 });
 
-mainListNodeContainer.appendChild(createListNode('Test list'));
-mainListNodeContainer.appendChild(createListNode('Test list'));
-mainListNodeContainer.appendChild(createListNode('Test list'));
+mainListNodeContainer.appendChild(createListNode('Default start list'));
