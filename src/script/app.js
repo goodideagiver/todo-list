@@ -197,14 +197,8 @@ const getNewListName = () => {
 };
 
 const createListNodeEntryInput = () => {
-	const listForm = document.createElement('section');
-	listForm.classList.add('list-nav');
-	const addButton = document.createElement('button');
-	addButton.classList.add('add-list-entry');
-	addButton.innerText = 'Add';
-	const entryInput = document.createElement('input');
-	entryInput.placeholder = 'List entry name';
-	addButton.addEventListener('click', () => {
+	const ListNodeEntryInput = createCustomNode('section', null, 'list-nav');
+	const addButton = createCustomNode('button', null, 'add-list-entry', () => {
 		if (entryInput.value > '') {
 			const entryContainer = addButton.parentElement;
 			entryContainer.parentElement
@@ -215,9 +209,12 @@ const createListNodeEntryInput = () => {
 			alert('Cannot add an empty list entry');
 		}
 	});
-	listForm.appendChild(entryInput);
-	listForm.appendChild(addButton);
-	return listForm;
+	addButton.innerText = 'Add';
+	const entryInput = document.createElement('input');
+	entryInput.placeholder = 'List entry name';
+	ListNodeEntryInput.appendChild(entryInput);
+	ListNodeEntryInput.appendChild(addButton);
+	return ListNodeEntryInput;
 };
 
 const createListDeleteButton = () => {
