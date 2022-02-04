@@ -175,5 +175,7 @@ addListButton.addEventListener('click', () => {
 	const getListName = getUserListName();
 	if (getListName > '') {
 		mainListNodeContainer.appendChild(createListNode(getListName));
+	} else {
+		alert('List name cannot be empty');
 	}
 });
