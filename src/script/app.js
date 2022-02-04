@@ -22,22 +22,26 @@ const createButton = (icon, customClassname, callbackFunc) => {
 	if (callbackFunc) {
 		button.addEventListener('click', callbackFunc);
 	}
-	return buttonElement;
+	return button;
 };
 
 const createUpDownButtons = () => {
-	const up = document.createElement('button');
 	const down = document.createElement('button');
 	const buttonsContainer = document.createElement('div');
 	buttonsContainer.classList.add('up-down-container');
-	up.innerHTML = '<i class="fas fa-angle-up"></i>';
-	up.classList.add('up-list-btn');
 	down.classList.add('down-list-btn');
 	down.innerHTML = '<i class="fas fa-angle-down"></i>';
+
+	const up = createButton(
+		'<i class="fas fa-angle-up"></i>',
+		'up-list-btn',
+		moveListItem
+	);
+	console.log(up);
+
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
 	});
-	up.addEventListener('click', moveListItem);
 	down.addEventListener('click', moveListItem);
 	return buttonsContainer;
 };
