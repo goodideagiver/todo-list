@@ -17,8 +17,9 @@ const getListEntryIndex = (element) => {
 
 const moveListItem = (e) => {
 	const clickedButton = e.target;
+	const listArray = clickedButton.closest('.list-entry-container').children;
 	const listItemIndex = getListEntryIndex(clickedButton);
-	console.log(listItemIndex);
+	console.log(listItemIndex + ' of ' + listArray.length);
 };
 
 const createDeleteButton = () => {
@@ -37,6 +38,8 @@ const createUpDownButtons = () => {
 	const buttonsContainer = document.createElement('div');
 	buttonsContainer.classList.add('up-down-container');
 	up.innerHTML = '<i class="fas fa-angle-up"></i>';
+	up.classList.add('up-list-btn');
+	down.classList.add('down-list-btn');
 	down.innerHTML = '<i class="fas fa-angle-down"></i>';
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
