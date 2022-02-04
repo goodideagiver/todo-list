@@ -179,11 +179,9 @@ const createEntryButtons = () => {
 };
 
 const createListEntry = (userInputText) => {
-	const entryLine = document.createElement('div');
-	const entryText = document.createElement('section');
+	const entryLine = createCustomNode('div', null, 'list-entry');
+	const entryText = createCustomNode('section', null, 'user-entry-text');
 	entryText.innerText = userInputText;
-	entryText.classList.add('user-entry-text');
-	entryLine.classList.add('list-entry');
 	entryLine.appendChild(entryText);
 	entryLine.appendChild(createEntryButtons());
 	return entryLine;
@@ -238,7 +236,7 @@ const createListNode = (userInputName) => {
 			null,
 			'list-entry-container'
 		);
-		[listHeader, , createListNodeEntryInput(), listEntryContainer].forEach(
+		[listHeader, createListNodeEntryInput(), listEntryContainer].forEach(
 			(element) => {
 				listContainer.appendChild(element);
 			}
