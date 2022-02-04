@@ -137,7 +137,7 @@ const moveListItem = (e) => {
 	}
 };
 
-const createDeleteButton = () => {
+const createDeleteEntryButton = () => {
 	const deleteButton = document.createElement('button');
 	deleteButton.classList.add('delete-entry-button');
 	deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
@@ -150,11 +150,13 @@ const createDeleteButton = () => {
 const createEntryButtons = () => {
 	const entryButtonsContainer = document.createElement('section');
 	entryButtonsContainer.classList.add('list-entry-buttons');
-	[createEditButton(), createUpDownButtons(), createDeleteButton()].forEach(
-		(button) => {
-			entryButtonsContainer.appendChild(button);
-		}
-	);
+	[
+		createEditButton(),
+		createUpDownButtons(),
+		createDeleteEntryButton(),
+	].forEach((button) => {
+		entryButtonsContainer.appendChild(button);
+	});
 	return entryButtonsContainer;
 };
 
