@@ -62,6 +62,7 @@ const createListNav = () => {
 			entryContainer.parentElement
 				.querySelector('.list-entry-container')
 				.appendChild(createListEntry(entryInput.value));
+			entryInput.value = '';
 		} else {
 			alert('Cannot add an empty list entry');
 		}
