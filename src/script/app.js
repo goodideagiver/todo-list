@@ -18,4 +18,22 @@ const createUpDownButtons = () => {
 	return buttonsContainer;
 };
 
-const createEntryButtons = () => {};
+const createEntryButtons = () => {
+	const entryButtonsContainer = document.createElement('section');
+	entryButtonsContainer.classList.add('list-entry-buttons');
+	[createUpDownButtons(), createDeleteButton()].forEach((button) => {
+		entryButtonsContainer.appendChild(button);
+	});
+	return entryButtonsContainer;
+};
+
+const createEntry = (e, userInputText) => {
+	const entryLine = document.createElement('div');
+	const entryText = document.createElement('section');
+	entryText.innerText = userInputText;
+	entryText.classList.add('user-entry-text');
+	entryLine.classList.add('list-entry');
+	entryLine.appendChild(entryText);
+	entryLine.appendChild(createEntryButtons());
+	return entryLine;
+};
