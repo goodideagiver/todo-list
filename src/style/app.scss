@@ -130,6 +130,24 @@ body {
 }
 
 .list-entry {
+	.edit-mode {
+		width: 100%;
+		display: flex;
+		gap: 5px;
+		input {
+			flex-basis: 100%;
+			padding: 0 10px;
+			outline: rgba(0, 0, 0, 0.5) 1px dashed;
+		}
+		.edit-mode-buttons {
+			display: flex;
+			gap: 10px;
+			button {
+				font-size: 20px;
+				padding: 10px;
+			}
+		}
+	}
 	margin: 5px;
 	display: flex;
 	gap: 10px;
