@@ -16,10 +16,28 @@ const getListEntryIndex = (element) => {
 };
 
 const moveListItem = (e) => {
+	const buttonClassTypes = {
+		up: 'up-list-btn',
+		down: 'down-list-btn',
+	};
 	const clickedButton = e.target;
 	const listArray = clickedButton.closest('.list-entry-container').children;
 	const listItemIndex = getListEntryIndex(clickedButton);
-	console.log(listItemIndex + ' of ' + listArray.length);
+	const clickedButtonType = clickedButton.closest('button').className;
+
+	if (listArray.length === 1) {
+		console.log('Cant move entry when there is only one');
+		return;
+	} else if (
+		listArray.length - 1 === listItemIndex &&
+		clickedButtonType === buttonClassTypes.down
+	) {
+		console.log('Cant move down entry that is last');
+	} else if (listItemIndex === 0) {
+		console.log('This entry is first in the list');
+	}
+
+	console.log(listItemIndex + 1 + ' of ' + listArray.length);
 };
 
 const createDeleteButton = () => {
