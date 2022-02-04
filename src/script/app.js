@@ -24,6 +24,7 @@ const moveListItem = (e) => {
 	const listArray = clickedButton.closest('.list-entry-container').children;
 	const listItemIndex = getListEntryIndex(clickedButton);
 	const clickedButtonType = clickedButton.closest('button').className;
+	const clickedEntry = clickedButton.closest('.list-entry');
 
 	if (listArray.length === 1) {
 		console.log('Cant move entry when there is only one');
@@ -42,7 +43,22 @@ const moveListItem = (e) => {
 		return;
 	}
 
-	console.log(listItemIndex + 1 + ' of ' + listArray.length);
+	switch (clickedButtonType) {
+		case buttonClassTypes.up:
+			clickedEntry.parentElement.insertBefore(
+				clickedEntry,
+				listArray[listItemIndex - 1]
+			);
+			break;
+		case buttonClassTypes.down:
+			clickedEntry.parentElement.insertBefore(
+				listArray[listItemIndex].nextSibling,
+				clickedEntry
+			);
+			break;
+		default:
+			return;
+	}
 };
 
 const createDeleteButton = () => {
