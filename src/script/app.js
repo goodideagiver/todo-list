@@ -17,7 +17,9 @@ const getListEntryIndex = (element) => {
 
 const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
 	const button = document.createElement(elementType);
-	button.innerHTML = icon;
+	if (icon) {
+		button.innerHTML = icon;
+	}
 	if (customClassname) {
 		button.classList.add(customClassname);
 	}
@@ -63,7 +65,7 @@ const createEditModeButtons = (oldText) => {
 		'button',
 		'<i class="fas fa-check"></i>',
 		null,
-		() => editModeRestore(decline, oldText)
+		() => editModeRestore(confirm)
 	);
 	const decline = createCustomNode(
 		'button',
@@ -71,7 +73,7 @@ const createEditModeButtons = (oldText) => {
 		null,
 		() => editModeRestore(decline, oldText)
 	);
-	const wrapper = document.createElement('section');
+	const wrapper = createCustomNode('section', null, 'edit-mode-buttons');
 	wrapper.appendChild(confirm);
 	wrapper.appendChild(createUpDownButtons());
 	wrapper.appendChild(decline);
@@ -79,12 +81,10 @@ const createEditModeButtons = (oldText) => {
 };
 
 const createEditModeElements = (userText) => {
-	const editModeWrapper = document.createElement('div');
-	editModeWrapper.classList.add('edit-mode');
+	const editModeWrapper = createCustomNode('div', null, 'edit-mode');
 	const listInput = document.createElement('input');
 	const buttonsWrapper = createEditModeButtons(userText);
 	listInput.value = userText;
-	buttonsWrapper.classList.add('edit-mode-buttons');
 	[listInput, buttonsWrapper].forEach((element) =>
 		editModeWrapper.appendChild(element)
 	);
