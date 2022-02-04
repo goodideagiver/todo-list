@@ -15,6 +15,16 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
+const createButton = (icon, customClassname, callbackFunc) => {
+	const button = document.createElement('button');
+	button.innerHTML = icon;
+	button.classList.add(customClassname);
+	if (callbackFunc) {
+		button.addEventListener('click', callbackFunc);
+	}
+	return buttonElement;
+};
+
 const createUpDownButtons = () => {
 	const up = document.createElement('button');
 	const down = document.createElement('button');
