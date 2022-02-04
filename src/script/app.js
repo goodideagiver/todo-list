@@ -15,9 +15,43 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
+const createEditModeButtons = () => {
+	const confirm = document.createElement('button');
+	confirm.innerHTML = '<i class="fas fa-check"></i>';
+	const decline = document.createElement('button');
+	decline.innerHTML = '<i class="fas fa-times"></i>';
+	const wrapper = document.createElement('section');
+	wrapper.appendChild(confirm);
+	wrapper.appendChild(decline);
+	return wrapper;
+};
+
+const createEditModeElements = (userText) => {
+	const editModeWrapper = document.createElement('div');
+	editModeWrapper.classList.add('edit-mode');
+	const listInput = document.createElement('input');
+	const buttonsWrapper = document.createElement('section');
+	listInput.value = userText;
+	buttonsWrapper.classList.add('edit-mode-buttons');
+	[listInput, buttonsWrapper].forEach((element) =>
+		editModeWrapper.appendChild(element)
+	);
+	return editModeWrapper;
+};
+
+const editModeLauncher = (e) => {
+	const editButton = e.target;
+	const listEntry = editButton.closest('.list-entry');
+	const userEntryElement = listEntry.querySelector('.user-entry-text');
+	listEntry.innerHTML = '';
+	listEntry.appendChild(createEditModeElements(userEntryElement.innerText));
+};
+
 const createEditButton = () => {
 	const editButton = document.createElement('button');
 	editButton.innerHTML = '<i class="fas fa-wrench"></i>';
+	editButton.classList.add('entry-edit-button');
+	editButton.addEventListener('click', editModeLauncher);
 	return editButton;
 };
 
