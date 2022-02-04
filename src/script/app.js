@@ -15,6 +15,23 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
+const createUpDownButtons = () => {
+	const up = document.createElement('button');
+	const down = document.createElement('button');
+	const buttonsContainer = document.createElement('div');
+	buttonsContainer.classList.add('up-down-container');
+	up.innerHTML = '<i class="fas fa-angle-up"></i>';
+	up.classList.add('up-list-btn');
+	down.classList.add('down-list-btn');
+	down.innerHTML = '<i class="fas fa-angle-down"></i>';
+	[up, down].forEach((btn) => {
+		buttonsContainer.appendChild(btn);
+	});
+	up.addEventListener('click', moveListItem);
+	down.addEventListener('click', moveListItem);
+	return buttonsContainer;
+};
+
 const editModeRestore = (element, oldText = '') => {
 	const listEntry = element.closest('.list-entry');
 	const userText =
@@ -32,6 +49,7 @@ const createEditModeButtons = (oldText) => {
 	decline.innerHTML = '<i class="fas fa-times"></i>';
 	const wrapper = document.createElement('section');
 	wrapper.appendChild(confirm);
+	wrapper.appendChild(createUpDownButtons());
 	wrapper.appendChild(decline);
 	decline.addEventListener('click', () => {
 		editModeRestore(decline, oldText);
@@ -125,23 +143,6 @@ const createDeleteButton = () => {
 		deleteButton.closest('.list-entry').remove();
 	});
 	return deleteButton;
-};
-
-const createUpDownButtons = () => {
-	const up = document.createElement('button');
-	const down = document.createElement('button');
-	const buttonsContainer = document.createElement('div');
-	buttonsContainer.classList.add('up-down-container');
-	up.innerHTML = '<i class="fas fa-angle-up"></i>';
-	up.classList.add('up-list-btn');
-	down.classList.add('down-list-btn');
-	down.innerHTML = '<i class="fas fa-angle-down"></i>';
-	[up, down].forEach((btn) => {
-		buttonsContainer.appendChild(btn);
-	});
-	up.addEventListener('click', moveListItem);
-	down.addEventListener('click', moveListItem);
-	return buttonsContainer;
 };
 
 const createEntryButtons = () => {
