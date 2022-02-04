@@ -23,6 +23,7 @@ body {
 	gap: 10px;
 	margin-bottom: 20px;
 	form {
+		align-items: center;
 		text-align: center;
 		flex-wrap: wrap;
 		> * {
@@ -36,7 +37,7 @@ body {
 			font-weight: bold;
 		}
 		input {
-			padding: 0 5px;
+			padding: 5px 5px;
 			flex: 1 1 0;
 			background-color: transparent;
 			border: 1px black dashed;
@@ -226,6 +227,24 @@ body {
 				color: white;
 			}
 			margin: 0 5px;
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	.main-app-nav {
+		flex-wrap: wrap;
+		* {
+			flex: 1 1 400px !important;
+		}
+		input,
+		button {
+			padding: 10px 10px !important;
+		}
+		form {
+			> * {
+				flex: 1 1 0 !important;
+			}
 		}
 	}
 }
