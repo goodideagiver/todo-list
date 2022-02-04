@@ -11,6 +11,12 @@
 body {
 	color: black;
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	> main {
+		flex-basis: 100%;
+		flex-grow: 1;
+	}
 }
 
 .main-app-nav {
@@ -105,7 +111,7 @@ body {
 		}
 	}
 	.delete-list-button {
-		opacity: 0;
+		opacity: 0.1;
 		padding: 10px;
 		font-size: 20px;
 		border-radius: 50px;
@@ -215,7 +221,6 @@ body {
 .my-typical-footer {
 	background-color: white;
 	padding: 10px;
-	position: fixed;
 	bottom: 0;
 	width: 100%;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
