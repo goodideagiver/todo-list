@@ -15,5 +15,20 @@
 		<script defer src="src/script/app.js"></script>
 		<script defer src="src/script/listNode.js"></script>
 	</head>
-	<body></body>
+	<body>
+		<main id="app">
+			<nav class="main-app-nav">
+				<button>
+					<p>Add list</p>
+					<i class="fas fa-plus"></i>
+				</button>
+				<form action="">
+					<label for="listName">List name</label>
+					<input id="listName" type="text" />
+					<button type="reset">Reset</button>
+				</form>
+			</nav>
+			<section id="listsContainer" class="main-lists-container"></section>
+		</main>
+	</body>
 </html>

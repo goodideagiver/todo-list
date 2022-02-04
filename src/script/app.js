@@ -27,7 +27,7 @@ const createEntryButtons = () => {
 	return entryButtonsContainer;
 };
 
-const createEntry = (e, userInputText) => {
+const createListEntry = (e, userInputText) => {
 	const entryLine = document.createElement('div');
 	const entryText = document.createElement('section');
 	entryText.innerText = userInputText;
