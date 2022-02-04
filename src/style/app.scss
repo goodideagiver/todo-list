@@ -43,6 +43,9 @@ body {
 			background-color: white;
 			color: black;
 			border-radius: 5px;
+			&:hover {
+				background-color: lightgray;
+			}
 		}
 	}
 	button {
@@ -57,7 +60,8 @@ body {
 		text-align: center;
 		cursor: pointer;
 		&:hover {
-			opacity: 0.9;
+			color: blue;
+			background-color: lightgray;
 		}
 		&:active {
 			transform: scale(0.95);
@@ -78,6 +82,11 @@ body {
 }
 
 .list-container {
+	input {
+		&:hover {
+			background-color: lightgray;
+		}
+	}
 	&:hover {
 		.delete-list-button {
 			opacity: 1;
