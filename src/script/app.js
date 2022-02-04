@@ -27,19 +27,19 @@ const moveListItem = (e) => {
 	const clickedEntry = clickedButton.closest('.list-entry');
 
 	if (listArray.length === 1) {
-		console.log('Cant move entry when there is only one');
+		alert('Cant move entry when there is only one');
 		return;
 	} else if (
 		listArray.length - 1 === listItemIndex &&
 		clickedButtonType === buttonClassTypes.down
 	) {
-		console.log('Cant move down entry that is last');
+		alert('Cant move down entry that is last');
 		return;
 	} else if (
 		listItemIndex === 0 &&
 		clickedButtonType === buttonClassTypes.up
 	) {
-		console.log('Cant move up entry that is first');
+		alert('Cant move up entry that is first');
 		return;
 	}
 
