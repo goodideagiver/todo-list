@@ -15,7 +15,17 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
-const createEditModeButtons = () => {
+const editModeRestore = (element, oldText = '') => {
+	const listEntry = element.closest('.list-entry');
+	const userText =
+		oldText > '' ? oldText : listEntry.querySelector('input').value;
+	console.log(listEntry, userText);
+	const editedEntry = createListEntry(userText);
+	listEntry.parentElement.insertBefore(editedEntry, listEntry);
+	listEntry.remove();
+};
+
+const createEditModeButtons = (oldText) => {
 	const confirm = document.createElement('button');
 	confirm.innerHTML = '<i class="fas fa-check"></i>';
 	const decline = document.createElement('button');
@@ -23,6 +33,12 @@ const createEditModeButtons = () => {
 	const wrapper = document.createElement('section');
 	wrapper.appendChild(confirm);
 	wrapper.appendChild(decline);
+	decline.addEventListener('click', () => {
+		editModeRestore(decline, oldText);
+	});
+	confirm.addEventListener('click', () => {
+		editModeRestore(confirm);
+	});
 	return wrapper;
 };
 
@@ -30,7 +46,7 @@ const createEditModeElements = (userText) => {
 	const editModeWrapper = document.createElement('div');
 	editModeWrapper.classList.add('edit-mode');
 	const listInput = document.createElement('input');
-	const buttonsWrapper = createEditModeButtons();
+	const buttonsWrapper = createEditModeButtons(userText);
 	listInput.value = userText;
 	buttonsWrapper.classList.add('edit-mode-buttons');
 	[listInput, buttonsWrapper].forEach((element) =>
