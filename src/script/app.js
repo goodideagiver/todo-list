@@ -99,13 +99,13 @@ const editModeLauncher = (e) => {
 	listEntry.appendChild(createEditModeElements(userEntryElement.innerText));
 };
 
-const createEditButton = () => {
-	const editButton = document.createElement('button');
-	editButton.innerHTML = '<i class="fas fa-wrench"></i>';
-	editButton.classList.add('entry-edit-button');
-	editButton.addEventListener('click', editModeLauncher);
-	return editButton;
-};
+const createEditButton = () =>
+	createCustomNode(
+		'button',
+		'<i class="fas fa-wrench"></i>',
+		'entry-edit-button',
+		editModeLauncher
+	);
 
 const moveListItem = (e) => {
 	const buttonClassTypes = {
