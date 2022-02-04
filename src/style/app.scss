@@ -139,14 +139,6 @@ body {
 			padding: 0 10px;
 			outline: rgba(0, 0, 0, 0.5) 1px dashed;
 		}
-		.edit-mode-buttons {
-			display: flex;
-			gap: 10px;
-			button {
-				font-size: 20px;
-				padding: 10px;
-			}
-		}
 	}
 	margin: 5px;
 	display: flex;
@@ -157,11 +149,13 @@ body {
 	border-radius: 0;
 	padding-bottom: 5px;
 	&:hover {
-		.list-entry-buttons {
+		.list-entry-buttons,
+		.edit-mode-buttons {
 			opacity: 1;
 		}
 	}
-	.list-entry-buttons {
+	.list-entry-buttons,
+	.edit-mode-buttons {
 		opacity: 0.1;
 		transition: 0.1s;
 		button {
@@ -172,6 +166,7 @@ body {
 		display: flex;
 		gap: 5px;
 		.up-down-container {
+			order: 5;
 			&:hover {
 				outline: 1px gray solid;
 			}
