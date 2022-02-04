@@ -77,7 +77,7 @@ const createEditModeElements = (userText) => {
 	const listInput = document.createElement('input');
 	const buttonsWrapper = createEditModeButtons(userText);
 	listInput.value = userText;
-	[listInput, buttonsWrapper].forEach((element) => editModeWrapper.appendChild(element));
+	addElementsToContainer(editModeWrapper, [listInput, buttonsWrapper]);
 	return editModeWrapper;
 };
 
@@ -159,8 +159,7 @@ const createListEntry = (userInputText) => {
 	const entryLine = createCustomNode('div', null, 'list-entry');
 	const entryText = createCustomNode('section', null, 'user-entry-text');
 	entryText.innerText = userInputText;
-	entryLine.appendChild(entryText);
-	entryLine.appendChild(createEntryButtons());
+	addElementsToContainer(entryLine, [entryText, createEntryButtons()]);
 	return entryLine;
 };
 
