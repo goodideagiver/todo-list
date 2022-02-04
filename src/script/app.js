@@ -218,9 +218,7 @@ const createListNodeHeader = (listInputName) => {
 const createListNode = (userInputName) => {
 	if (userInputName > '') {
 		const listContainer = createCustomNode('div', null, 'list-container');
-
 		const listHeader = createListNodeHeader(userInputName);
-
 		addElementsToContainer(listContainer, [
 			listHeader,
 			createListNodeEntryInput(),
