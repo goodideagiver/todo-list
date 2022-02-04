@@ -33,8 +33,13 @@ const moveListItem = (e) => {
 		clickedButtonType === buttonClassTypes.down
 	) {
 		console.log('Cant move down entry that is last');
-	} else if (listItemIndex === 0) {
-		console.log('This entry is first in the list');
+		return;
+	} else if (
+		listItemIndex === 0 &&
+		clickedButtonType === buttonClassTypes.up
+	) {
+		console.log('Cant move up entry that is first');
+		return;
 	}
 
 	console.log(listItemIndex + 1 + ' of ' + listArray.length);
