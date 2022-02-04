@@ -6,13 +6,18 @@ const getListEntryIndex = (element) => {
 	const allParentListElements = listEntry.parentElement.children;
 	let foundIndex;
 	for (let i = 0; i < allParentListElements.length; i++) {
-		foundIndex =
-			allParentListElements[i] === listEntry ? i : 'match not found';
+		foundIndex = allParentListElements[i] === listEntry ? i : 'match not found';
 		if (i === foundIndex) {
 			break;
 		}
 	}
 	return foundIndex;
+};
+
+const addElementsToContainer = (container, elementsArray) => {
+	elementsArray.forEach((element) => {
+		container.appendChild(element);
+	});
 };
 
 const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
@@ -51,25 +56,18 @@ const createUpDownButtons = () => {
 
 const editModeRestore = (element, oldText = '') => {
 	const listEntry = element.closest('.list-entry');
-	const userText =
-		oldText > '' ? oldText : listEntry.querySelector('input').value;
+	const userText = oldText > '' ? oldText : listEntry.querySelector('input').value;
 	const editedEntry = createListEntry(userText);
 	listEntry.parentElement.insertBefore(editedEntry, listEntry);
 	listEntry.remove();
 };
 
 const createEditModeButtons = (oldText) => {
-	const confirm = createCustomNode(
-		'button',
-		'<i class="fas fa-check"></i>',
-		null,
-		() => editModeRestore(confirm)
+	const confirm = createCustomNode('button', '<i class="fas fa-check"></i>', null, () =>
+		editModeRestore(confirm)
 	);
-	const decline = createCustomNode(
-		'button',
-		'<i class="fas fa-times"></i>',
-		null,
-		() => editModeRestore(decline, oldText)
+	const decline = createCustomNode('button', '<i class="fas fa-times"></i>', null, () =>
+		editModeRestore(decline, oldText)
 	);
 	const wrapper = createCustomNode('section', null, 'edit-mode-buttons');
 	wrapper.appendChild(confirm);
@@ -83,9 +81,7 @@ const createEditModeElements = (userText) => {
 	const listInput = document.createElement('input');
 	const buttonsWrapper = createEditModeButtons(userText);
 	listInput.value = userText;
-	[listInput, buttonsWrapper].forEach((element) =>
-		editModeWrapper.appendChild(element)
-	);
+	[listInput, buttonsWrapper].forEach((element) => editModeWrapper.appendChild(element));
 	return editModeWrapper;
 };
 
@@ -128,20 +124,14 @@ const moveListItem = (e) => {
 			clickedEntry.parentElement.firstElementChild
 		);
 		return;
-	} else if (
-		listItemIndex === 0 &&
-		clickedButtonType === buttonClassTypes.up
-	) {
+	} else if (listItemIndex === 0 && clickedButtonType === buttonClassTypes.up) {
 		clickedEntry.parentElement.appendChild(clickedEntry);
 		return;
 	}
 
 	switch (clickedButtonType) {
 		case buttonClassTypes.up:
-			clickedEntry.parentElement.insertBefore(
-				clickedEntry,
-				listArray[listItemIndex - 1]
-			);
+			clickedEntry.parentElement.insertBefore(clickedEntry, listArray[listItemIndex - 1]);
 			break;
 		case buttonClassTypes.down:
 			clickedEntry.parentElement.insertBefore(
@@ -155,26 +145,17 @@ const moveListItem = (e) => {
 };
 
 const createDeleteEntryButton = () =>
-	createCustomNode(
-		'button',
-		'<i class="fas fa-trash-alt"></i>',
-		'delete-entry-button',
-		(e) => e.target.closest('.list-entry').remove()
+	createCustomNode('button', '<i class="fas fa-trash-alt"></i>', 'delete-entry-button', (e) =>
+		e.target.closest('.list-entry').remove()
 	);
 
 const createEntryButtons = () => {
-	const entryButtonsContainer = createCustomNode(
-		'section',
-		null,
-		'list-entry-buttons'
-	);
-	[
+	const entryButtonsContainer = createCustomNode('section', null, 'list-entry-buttons');
+	addElementsToContainer(entryButtonsContainer, [
 		createEditButton(),
 		createUpDownButtons(),
 		createDeleteEntryButton(),
-	].forEach((button) => {
-		entryButtonsContainer.appendChild(button);
-	});
+	]);
 	return entryButtonsContainer;
 };
 
@@ -216,11 +197,8 @@ const createListNodeEntryInput = () => {
 };
 
 const createListDeleteButton = () =>
-	createCustomNode(
-		'button',
-		'<i class="fas fa-trash-alt"></i>',
-		'delete-list-button',
-		(e) => e.target.closest('.list-container').remove()
+	createCustomNode('button', '<i class="fas fa-trash-alt"></i>', 'delete-list-button', (e) =>
+		e.target.closest('.list-container').remove()
 	);
 
 const createListNode = (userInputName) => {
@@ -231,16 +209,10 @@ const createListNode = (userInputName) => {
 		listName.innerText = userInputName;
 		listHeader.appendChild(listName);
 		listHeader.appendChild(createListDeleteButton());
-		const listEntryContainer = createCustomNode(
-			'main',
-			null,
-			'list-entry-container'
-		);
-		[listHeader, createListNodeEntryInput(), listEntryContainer].forEach(
-			(element) => {
-				listContainer.appendChild(element);
-			}
-		);
+		const listEntryContainer = createCustomNode('main', null, 'list-entry-container');
+		[listHeader, createListNodeEntryInput(), listEntryContainer].forEach((element) => {
+			listContainer.appendChild(element);
+		});
 		return listContainer;
 	} else {
 		alert('List name cannot be empty');
