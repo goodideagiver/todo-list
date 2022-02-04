@@ -240,20 +240,12 @@ addListButton.addEventListener('click', () => {
 	}
 });
 
-const getListEntries = (entries) => {
-	let entryNodeList = [];
-	for (let i = 0; i < entries.length; i++) {
-		entryNodeList.push(createListEntry(entries[i]));
-	}
-	return entryNodeList;
-};
-
 const createFullList = (listName, nodeList = 0) => {
 	const newList = createListNode(listName);
 	const listEntryContainer = newList.querySelector('.list-entry-container');
 	mainListNodeContainer.appendChild(newList);
 	for (let i = 0; i < nodeList.length; i++) {
-		listEntryContainer.appendChild(nodeList[i]);
+		listEntryContainer.appendChild(createListEntry(nodeList[i]));
 	}
 };
 
@@ -284,5 +276,18 @@ const lists = [
 ];
 
 lists.forEach((list) => {
-	createFullList(list.name, getListEntries(list.entries));
+	createFullList(list.name, list.entries);
 });
+
+const todoListApp = {
+	list: {
+		create: createFullList,
+		listItem: {
+			create: {
+				entry: createListEntry,
+			},
+		},
+	},
+};
+
+todoListApp.list.create('Testowa lista', ['test']);
