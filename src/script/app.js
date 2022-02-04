@@ -30,8 +30,7 @@ const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
 };
 
 const createUpDownButtons = () => {
-	const buttonsContainer = document.createElement('div');
-	buttonsContainer.classList.add('up-down-container');
+	const buttonsContainer = createCustomNode('div', null, 'up-down-container');
 	const up = createCustomNode(
 		'button',
 		'<i class="fas fa-angle-up"></i>',
@@ -47,7 +46,6 @@ const createUpDownButtons = () => {
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
 	});
-	down.addEventListener('click', moveListItem);
 	return buttonsContainer;
 };
 
