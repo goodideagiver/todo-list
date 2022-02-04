@@ -45,7 +45,10 @@ const createListEntry = (userInputText) => {
 };
 
 const getUserListName = () => {
-	return document.querySelector('#listName').value;
+	const newListNameElement = document.querySelector('#listName');
+	const newListName = newListNameElement.value;
+	newListNameElement.value = '';
+	return newListName;
 };
 
 const createListNav = () => {
@@ -80,7 +83,7 @@ const createListDeleteButton = () => {
 };
 
 const createListNode = (userInputName) => {
-	if (getUserListName() > '') {
+	if (userInputName > '') {
 		const listContainer = document.createElement('div');
 		listContainer.classList.add('list-container');
 		const listHeader = document.createElement('header');
