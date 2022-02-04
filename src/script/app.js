@@ -15,8 +15,8 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
-const createButton = (icon, customClassname, callbackFunc) => {
-	const button = document.createElement('button');
+const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
+	const button = document.createElement(elementType);
 	button.innerHTML = icon;
 	button.classList.add(customClassname);
 	if (callbackFunc) {
@@ -28,12 +28,14 @@ const createButton = (icon, customClassname, callbackFunc) => {
 const createUpDownButtons = () => {
 	const buttonsContainer = document.createElement('div');
 	buttonsContainer.classList.add('up-down-container');
-	const up = createButton(
+	const up = createCustomNode(
+		'button',
 		'<i class="fas fa-angle-up"></i>',
 		'up-list-btn',
 		moveListItem
 	);
-	const down = createButton(
+	const down = createCustomNode(
+		'button',
 		'<i class="fas fa-angle-down"></i>',
 		'down-list-btn',
 		moveListItem
