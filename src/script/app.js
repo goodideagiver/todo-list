@@ -48,9 +48,7 @@ const createUpDownButtons = () => {
 		'down-list-btn',
 		moveListItem
 	);
-	[up, down].forEach((btn) => {
-		buttonsContainer.appendChild(btn);
-	});
+	addElementsToContainer(buttonsContainer, [up, down]);
 	return buttonsContainer;
 };
 
@@ -70,9 +68,7 @@ const createEditModeButtons = (oldText) => {
 		editModeRestore(decline, oldText)
 	);
 	const wrapper = createCustomNode('section', null, 'edit-mode-buttons');
-	wrapper.appendChild(confirm);
-	wrapper.appendChild(createUpDownButtons());
-	wrapper.appendChild(decline);
+	addElementsToContainer(wrapper, [confirm, createUpDownButtons(), decline]);
 	return wrapper;
 };
 
