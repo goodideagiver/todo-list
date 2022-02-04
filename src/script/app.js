@@ -18,7 +18,9 @@ const getListEntryIndex = (element) => {
 const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
 	const button = document.createElement(elementType);
 	button.innerHTML = icon;
-	button.classList.add(customClassname);
+	if (customClassname) {
+		button.classList.add(customClassname);
+	}
 	if (callbackFunc) {
 		button.addEventListener('click', callbackFunc);
 	}
@@ -57,20 +59,22 @@ const editModeRestore = (element, oldText = '') => {
 };
 
 const createEditModeButtons = (oldText) => {
-	const confirm = document.createElement('button');
-	confirm.innerHTML = '<i class="fas fa-check"></i>';
-	const decline = document.createElement('button');
-	decline.innerHTML = '<i class="fas fa-times"></i>';
+	const confirm = createCustomNode(
+		'button',
+		'<i class="fas fa-check"></i>',
+		null,
+		() => editModeRestore(decline, oldText)
+	);
+	const decline = createCustomNode(
+		'button',
+		'<i class="fas fa-times"></i>',
+		null,
+		() => editModeRestore(decline, oldText)
+	);
 	const wrapper = document.createElement('section');
 	wrapper.appendChild(confirm);
 	wrapper.appendChild(createUpDownButtons());
 	wrapper.appendChild(decline);
-	decline.addEventListener('click', () => {
-		editModeRestore(decline, oldText);
-	});
-	confirm.addEventListener('click', () => {
-		editModeRestore(confirm);
-	});
 	return wrapper;
 };
 
