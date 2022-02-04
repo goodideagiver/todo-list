@@ -169,14 +169,14 @@ const createListEntry = (userInputText) => {
 	return entryLine;
 };
 
-const getUserListName = () => {
+const getNewListName = () => {
 	const newListNameElement = document.querySelector('#listName');
 	const newListName = newListNameElement.value;
 	newListNameElement.value = '';
 	return newListName;
 };
 
-const createListNav = () => {
+const createListNodeEntryInput = () => {
 	const listForm = document.createElement('section');
 	listForm.classList.add('list-nav');
 	const addButton = document.createElement('button');
@@ -222,7 +222,7 @@ const createListNode = (userInputName) => {
 		listHeader.appendChild(listDelete);
 		const listEntryContainer = document.createElement('main');
 		listEntryContainer.classList.add('list-entry-container');
-		[listHeader, , createListNav(), listEntryContainer].forEach(
+		[listHeader, , createListNodeEntryInput(), listEntryContainer].forEach(
 			(element) => {
 				listContainer.appendChild(element);
 			}
@@ -235,7 +235,7 @@ const createListNode = (userInputName) => {
 };
 
 addListButton.addEventListener('click', () => {
-	const getListName = getUserListName();
+	const getListName = getNewListName();
 	if (getListName > '') {
 		mainListNodeContainer.appendChild(createListNode(getListName));
 	} else {
@@ -243,7 +243,7 @@ addListButton.addEventListener('click', () => {
 	}
 });
 
-const createMultipleEntries = (entries) => {
+const getListEntries = (entries) => {
 	let entryNodeList = [];
 	for (let i = 0; i < entries.length; i++) {
 		entryNodeList.push(createListEntry(entries[i]));
@@ -287,5 +287,5 @@ const lists = [
 ];
 
 lists.forEach((list) => {
-	createFullList(list.name, createMultipleEntries(list.entries));
+	createFullList(list.name, getListEntries(list.entries));
 });
