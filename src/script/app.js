@@ -26,19 +26,18 @@ const createButton = (icon, customClassname, callbackFunc) => {
 };
 
 const createUpDownButtons = () => {
-	const down = document.createElement('button');
 	const buttonsContainer = document.createElement('div');
 	buttonsContainer.classList.add('up-down-container');
-	down.classList.add('down-list-btn');
-	down.innerHTML = '<i class="fas fa-angle-down"></i>';
-
 	const up = createButton(
 		'<i class="fas fa-angle-up"></i>',
 		'up-list-btn',
 		moveListItem
 	);
-	console.log(up);
-
+	const down = createButton(
+		'<i class="fas fa-angle-down"></i>',
+		'down-list-btn',
+		moveListItem
+	);
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
 	});
