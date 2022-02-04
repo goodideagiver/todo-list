@@ -143,6 +143,9 @@ const createListDeleteButton = () => {
 	const deleteButton = document.createElement('button');
 	deleteButton.classList.add('delete-list-button');
 	deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+	deleteButton.addEventListener('click', () => {
+		deleteButton.closest('.list-container').remove();
+	});
 	return deleteButton;
 };
 
