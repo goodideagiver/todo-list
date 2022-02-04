@@ -15,6 +15,12 @@ const getListEntryIndex = (element) => {
 	return foundIndex;
 };
 
+const createEditButton = () => {
+	const editButton = document.createElement('button');
+	editButton.innerHTML = '<i class="fas fa-wrench"></i>';
+	return editButton;
+};
+
 const moveListItem = (e) => {
 	const buttonClassTypes = {
 		up: 'up-list-btn',
@@ -91,9 +97,11 @@ const createUpDownButtons = () => {
 const createEntryButtons = () => {
 	const entryButtonsContainer = document.createElement('section');
 	entryButtonsContainer.classList.add('list-entry-buttons');
-	[createUpDownButtons(), createDeleteButton()].forEach((button) => {
-		entryButtonsContainer.appendChild(button);
-	});
+	[createEditButton(), createUpDownButtons(), createDeleteButton()].forEach(
+		(button) => {
+			entryButtonsContainer.appendChild(button);
+		}
+	);
 	return entryButtonsContainer;
 };
 
