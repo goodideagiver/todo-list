@@ -227,16 +227,17 @@ const createListDeleteButton = () =>
 
 const createListNode = (userInputName) => {
 	if (userInputName > '') {
-		const listContainer = document.createElement('div');
-		listContainer.classList.add('list-container');
+		const listContainer = createCustomNode('div', null, 'list-container');
 		const listHeader = document.createElement('header');
-		const listDelete = createListDeleteButton();
 		const listName = document.createElement('h2');
 		listName.innerText = userInputName;
 		listHeader.appendChild(listName);
-		listHeader.appendChild(listDelete);
-		const listEntryContainer = document.createElement('main');
-		listEntryContainer.classList.add('list-entry-container');
+		listHeader.appendChild(createListDeleteButton());
+		const listEntryContainer = createCustomNode(
+			'main',
+			null,
+			'list-entry-container'
+		);
 		[listHeader, , createListNodeEntryInput(), listEntryContainer].forEach(
 			(element) => {
 				listContainer.appendChild(element);
