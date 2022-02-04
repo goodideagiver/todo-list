@@ -107,7 +107,6 @@ const moveListItem = (e) => {
 		listArray.length - 1 === listItemIndex &&
 		clickedButtonType === buttonClassTypes.down
 	) {
-		console.log();
 		clickedEntry.parentElement.insertBefore(
 			clickedEntry,
 			clickedEntry.parentElement.firstElementChild
@@ -117,7 +116,7 @@ const moveListItem = (e) => {
 		listItemIndex === 0 &&
 		clickedButtonType === buttonClassTypes.up
 	) {
-		alert('Cant move up entry that is first');
+		clickedEntry.parentElement.appendChild(clickedEntry);
 		return;
 	}
 
