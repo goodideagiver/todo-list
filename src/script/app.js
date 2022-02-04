@@ -167,8 +167,11 @@ const createDeleteEntryButton = () => {
 };
 
 const createEntryButtons = () => {
-	const entryButtonsContainer = document.createElement('section');
-	entryButtonsContainer.classList.add('list-entry-buttons');
+	const entryButtonsContainer = createCustomNode(
+		'section',
+		null,
+		'list-entry-buttons'
+	);
 	[
 		createEditButton(),
 		createUpDownButtons(),
