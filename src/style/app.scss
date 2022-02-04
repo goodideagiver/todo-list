@@ -62,7 +62,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	> * {
-		flex: 1 1 300px;
+		flex: 1 1 600px;
 	}
 }
 
@@ -71,13 +71,19 @@ body {
 		border-radius: 5px;
 	}
 	button {
-		transition: 0.3s;
 		cursor: pointer;
 		&:hover {
 			color: blue;
+			background-color: lightgray;
 			opacity: 0.8;
-			box-shadow: rgba(50, 50, 93, 0.55) 0px 13px 27px -5px,
-				rgba(0, 0, 0, 0.5) 0px 8px 16px -8px;
+		}
+	}
+	.delete-list-button {
+		padding: 10px;
+		font-size: 20px;
+		border-radius: 50px;
+		&:hover {
+			outline: 1px gray solid;
 		}
 	}
 	background-color: white;
@@ -89,6 +95,7 @@ body {
 		gap: 10px;
 		justify-content: center;
 		padding: 10px;
+		align-items: center;
 	}
 	.list-nav {
 		padding: 5px;
@@ -116,17 +123,28 @@ body {
 	padding-bottom: 5px;
 	.list-entry-buttons {
 		button {
-			font-size: 1.2rem;
-			padding: 5px;
+			font-size: 20px;
+			padding: 5px 10px;
 			border-radius: 50px;
-			border: 1px black solid;
 		}
 		display: flex;
 		gap: 5px;
 		.up-down-container {
+			&:hover {
+				outline: 1px gray solid;
+			}
 			display: flex;
 			flex-direction: column;
-			gap: 5px;
+			border-radius: 50px;
+			overflow: hidden;
+			button {
+				border-radius: 0;
+			}
+		}
+		.delete-entry-button {
+			&:hover {
+				outline: 1px gray solid;
+			}
 		}
 	}
 	.user-entry-text {

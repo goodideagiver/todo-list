@@ -182,3 +182,7 @@ addListButton.addEventListener('click', () => {
 		alert('List name cannot be empty');
 	}
 });
+
+mainListNodeContainer.appendChild(createListNode('Test list'));
+mainListNodeContainer.appendChild(createListNode('Test list'));
+mainListNodeContainer.appendChild(createListNode('Test list'));
