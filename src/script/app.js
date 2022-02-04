@@ -1,6 +1,10 @@
 const mainListNodeContainer = document.querySelector('#listsContainer');
 const addListButton = document.querySelector('#addList');
 
+const getListEntryIndex = (e) => {
+	const listEntry = e.target.closest('.list-entry');
+};
+
 const createDeleteButton = () => {
 	const deleteButton = document.createElement('button');
 	deleteButton.classList.add('delete-entry-button');
@@ -20,6 +24,7 @@ const createUpDownButtons = () => {
 	down.innerHTML = '<i class="fas fa-angle-down"></i>';
 	[up, down].forEach((btn) => {
 		buttonsContainer.appendChild(btn);
+		btn.addEventListener('click', getListEntryIndex);
 	});
 	return buttonsContainer;
 };
@@ -92,10 +97,8 @@ const createListNode = (userInputName) => {
 		listName.innerText = userInputName;
 		listHeader.appendChild(listName);
 		listHeader.appendChild(listDelete);
-
 		const listEntryContainer = document.createElement('main');
 		listEntryContainer.classList.add('list-entry-container');
-
 		[listHeader, , createListNav(), listEntryContainer].forEach(
 			(element) => {
 				listContainer.appendChild(element);
@@ -110,5 +113,8 @@ const createListNode = (userInputName) => {
 };
 
 addListButton.addEventListener('click', () => {
-	mainListNodeContainer.appendChild(createListNode(getUserListName()));
+	const getListName = getUserListName();
+	if (getListName > '') {
+		mainListNodeContainer.appendChild(createListNode(getListName));
+	}
 });
