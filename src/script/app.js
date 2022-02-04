@@ -242,4 +242,47 @@ addListButton.addEventListener('click', () => {
 	}
 });
 
-mainListNodeContainer.appendChild(createListNode('Default start list'));
+const createMultipleEntries = (...entrys) => {
+	let entryNodeList = [];
+	for (let i = 0; i < entrys.length; i++) {
+		entryNodeList.push(createListEntry(entrys[i]));
+	}
+	return entryNodeList;
+};
+
+const createFullList = (listName, nodeList = 0) => {
+	const newList = createListNode(listName);
+	const listEntryContainer = newList.querySelector('.list-entry-container');
+	mainListNodeContainer.appendChild(newList);
+	for (let i = 0; i < nodeList.length; i++) {
+		listEntryContainer.appendChild(nodeList[i]);
+	}
+};
+
+createFullList(
+	'Test list',
+	createMultipleEntries(
+		'Test 1',
+		'This is entry test number two',
+		'You can edit and move entries, (Even in edit mode!)'
+	)
+);
+
+createFullList(
+	'Second list, wow',
+	createMultipleEntries(
+		'You can create as many lists as you like',
+		'Hovewer the lists are stored until you reset or close this website (there is no backend)'
+	)
+);
+
+createFullList(
+	'Thats fun',
+	createMultipleEntries(
+		'Check links at the bottom to check out more of my projects',
+		'Lorem ipsum',
+		'Lorem ipsum',
+		'Lorem ipsum',
+		'Lorem ipsum'
+	)
+);
