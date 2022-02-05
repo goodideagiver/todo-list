@@ -162,8 +162,8 @@ const createListEntry = (userInputText) => {
 	});
 	const entryText = createCustomNode('section', {
 		customClassname: 'user-entry-text',
+		text: userInputText,
 	});
-	entryText.innerText = userInputText;
 	addElementsToContainer(entryLine, [entryText, createEntryButtons()]);
 	return entryLine;
 };
