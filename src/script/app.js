@@ -80,9 +80,8 @@ const createEditModeElements = (userText) => {
 	const editModeWrapper = createCustomNode('div', {
 		customClassname: 'edit-mode',
 	});
-	const listInput = document.createElement('input');
+	const listInput = createCustomNode('input', { input: userText });
 	const buttonsWrapper = createEditModeButtons(userText);
-	listInput.value = userText;
 	addElementsToContainer(editModeWrapper, [listInput, buttonsWrapper]);
 	return editModeWrapper;
 };
