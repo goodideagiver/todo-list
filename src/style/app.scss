@@ -162,6 +162,9 @@ body {
 			font-weight: bold;
 		}
 		input {
+			min-width: 0;
+			flex-basis: 400px;
+			flex-grow: 100;
 			opacity: 0.6;
 			&:hover {
 				opacity: 1;
@@ -170,7 +173,7 @@ body {
 		button {
 			border: 0;
 			width: fit-content;
-			flex-grow: 0;
+			flex-grow: 1;
 			flex-basis: 50px;
 			&:hover {
 				outline: 1px gray solid;
