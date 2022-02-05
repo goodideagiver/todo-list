@@ -107,9 +107,11 @@ body {
 		border-radius: 5px;
 	}
 	button {
+		color: black;
 		cursor: pointer;
+		transition: 0.2s;
 		&:hover {
-			color: blue;
+			color: purple;
 			background-color: lightgray;
 			opacity: 0.8;
 		}

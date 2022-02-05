@@ -1,10 +1,14 @@
-const saveChanges = () => {
+const disableEditMode = () => {
 	const editModeButtons = document.querySelectorAll('.edit-mode-buttons');
 	if (editModeButtons) {
 		editModeButtons.forEach((element) => {
 			element.firstElementChild.click();
 		});
 	}
+};
+
+const saveChanges = () => {
+	disableEditMode();
 	const lists = [];
 	mainListNodeContainer.childNodes.forEach((list) => {
 		const listObj = {

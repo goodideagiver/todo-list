@@ -12,6 +12,7 @@ const createListNodeEntryInput = () => {
 		customClassname: 'list-nav',
 	});
 	const addButton = createCustomNode('button', {
+		text: 'Add',
 		customClassname: 'add-list-entry',
 		saveOnClick: true,
 		callbackFunc: () => {
@@ -26,10 +27,13 @@ const createListNodeEntryInput = () => {
 			}
 		},
 	});
-	addButton.innerText = 'Add';
+	const sortList = createCustomNode('button', {
+		text: 'Sort',
+		callbackFunc: (e) => sortEntryList(e.target),
+	});
 	const entryInput = createCustomNode('input', { placeholder: 'List entry name' });
 	clickElementOnEnterPress(entryInput, addButton);
-	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton]);
+	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton, sortList]);
 	return ListNodeEntryInput;
 };
 

@@ -161,3 +161,22 @@ const createListEntry = (userInputText) => {
 	return entryLine;
 };
 
+const sortEntryList = (clickedElement) => {
+	disableEditMode();
+	const list = clickedElement
+		.closest('.list-container')
+		.querySelector('.list-entry-container');
+	const entries = list.querySelectorAll('.user-entry-text');
+	let entryArray = [];
+	if (entries) {
+		for (let i = 0; i < entries.length; i++) {
+			entryArray.push(entries[i].innerText);
+		}
+	}
+	entryArray.sort();
+	list.innerHTML = '';
+	for (let i = 0; i < entryArray.length; i++) {
+		list.appendChild(createListEntry(entryArray[i]));
+	}
+	saveChanges();
+};
