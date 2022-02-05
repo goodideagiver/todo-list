@@ -331,14 +331,14 @@ if (localStorage.getItem('lists')) {
 } else {
 	const lists = [
 		createListObject(
-			'Test 1',
+			'Super fun list name',
 			'This is entry test number two',
-			'You can edit and move entries, (Even in edit mode!)'
+			'You can edit and move entries'
 		),
 		createListObject(
 			'Second list, wow',
 			'You can create as many lists as you like',
-			'Hovewer the lists are stored until you reset or close this website (there is no backend)'
+			'Lists are stored in your browser memory :O'
 		),
 		createListObject(
 			'Thats fun',
