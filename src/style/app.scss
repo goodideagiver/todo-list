@@ -1,6 +1,6 @@
 :root {
 	--uni-radius: 8px;
-	--main-bg-color: white;
+	--main-bg-color: rgb(255, 255, 255);
 	--darker-bg-on-hover: lightgray;
 	--outline-and-border: gray;
 	--font-color: black;
@@ -148,6 +148,7 @@ body {
 			outline: 1px var(--outline-and-border) solid;
 		}
 	}
+	outline: 2px var(--darker-bg-on-hover) solid;
 	background-color: var(--main-bg-color);
 	border-radius: var(--uni-radius);
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
