@@ -57,11 +57,13 @@ const createUpDownButtons = () => {
 	const buttonsContainer = createCustomNode('div', {
 		icon: null,
 		customClassname: 'up-down-container',
+		saveOnClick: true,
 	});
 	const up = createCustomNode('button', {
 		icon: '<i class="fas fa-angle-up"></i>',
 		customClassname: 'up-list-btn',
 		callbackFunc: moveListItem,
+		saveOnClick: true,
 	});
 	const down = createCustomNode('button', {
 		icon: '<i class="fas fa-angle-down"></i>',
@@ -84,10 +86,12 @@ const createEditModeButtons = (oldText) => {
 	const confirm = createCustomNode('button', {
 		icon: '<i class="fas fa-check"></i>',
 		callbackFunc: () => editModeRestore(confirm),
+		saveOnClick: true,
 	});
 	const decline = createCustomNode('button', {
 		icon: '<i class="fas fa-times"></i>',
 		callbackFunc: () => editModeRestore(decline, oldText),
+		saveOnClick: true,
 	});
 	const wrapper = createCustomNode('section', {
 		customClassname: 'edit-mode-buttons',
@@ -172,6 +176,7 @@ const createDeleteEntryButton = () =>
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-entry-button',
 		callbackFunc: (e) => e.target.closest('.list-entry').remove(),
+		saveOnClick: true,
 	});
 
 const createEntryButtons = () => {
@@ -211,6 +216,7 @@ const createListNodeEntryInput = () => {
 	});
 	const addButton = createCustomNode('button', {
 		customClassname: 'add-list-entry',
+		saveOnClick: true,
 		callbackFunc: () => {
 			if (entryInput.value > '') {
 				const entryContainer = addButton.parentElement;
@@ -233,6 +239,7 @@ const createListDeleteButton = () =>
 	createCustomNode('button', {
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-list-button',
+		saveOnClick: true,
 		callbackFunc: (e) => e.target.closest('.list-container').remove(),
 	});
 
@@ -268,6 +275,7 @@ addListButton.addEventListener('click', () => {
 	const getListName = getNewListName();
 	if (getListName > '') {
 		mainListNodeContainer.appendChild(createListNode(getListName));
+		saveChanges();
 	} else {
 		alert('List name cannot be empty');
 	}
