@@ -75,9 +75,9 @@ const createEditModeElements = (userText) => {
 const editModeLauncher = (e) => {
 	const editButton = e.target;
 	const listEntry = editButton.closest('.list-entry');
-	const userEntryElement = listEntry.querySelector('.user-entry-text');
+	const userEntryElement = listEntry.querySelector('.user-entry-text').innerText;
 	listEntry.innerHTML = '';
-	listEntry.appendChild(createEditModeElements(userEntryElement.innerText));
+	listEntry.appendChild(createEditModeElements(userEntryElement));
 	listEntry.querySelector('input').click();
 	listEntry.querySelector('input').focus();
 };
