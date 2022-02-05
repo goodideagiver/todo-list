@@ -270,40 +270,40 @@ const createListObject = (listName, ...entries) => {
 	return obj;
 };
 
-const lists = [
-	createListObject(
-		'Test 1',
-		'This is entry test number two',
-		'You can edit and move entries, (Even in edit mode!)'
-	),
-	createListObject(
-		'Second list, wow',
-		'You can create as many lists as you like',
-		'Hovewer the lists are stored until you reset or close this website (there is no backend)'
-	),
-	createListObject(
-		'Thats fun',
-		'Check links at the bottom to check out more of my projects',
-		'Lorem ipsum'
-	),
-];
+// const lists = [
+// 	createListObject(
+// 		'Test 1',
+// 		'This is entry test number two',
+// 		'You can edit and move entries, (Even in edit mode!)'
+// 	),
+// 	createListObject(
+// 		'Second list, wow',
+// 		'You can create as many lists as you like',
+// 		'Hovewer the lists are stored until you reset or close this website (there is no backend)'
+// 	),
+// 	createListObject(
+// 		'Thats fun',
+// 		'Check links at the bottom to check out more of my projects',
+// 		'Lorem ipsum'
+// 	),
+// ];
 
-lists.forEach((list) => {
-	createFullList(list.name, list.entries);
-});
+// lists.forEach((list) => {
+// 	createFullList(list.name, list.entries);
+// });
 
-const todoListApp = {
-	list: {
-		create: createFullList,
-		listItem: {
-			create: {
-				entry: createListEntry,
-			},
-		},
-	},
-};
+// const todoListApp = {
+// 	list: {
+// 		create: createFullList,
+// 		listItem: {
+// 			create: {
+// 				entry: createListEntry,
+// 			},
+// 		},
+// 	},
+// };
 
-todoListApp.list.create('Test list', ['test']);
+// todoListApp.list.create('Test list', ['test']);
 
 const getEntriesText = (parentList) => {
 	let textList = [];
@@ -314,6 +314,12 @@ const getEntriesText = (parentList) => {
 };
 
 const saveChanges = () => {
+	const editModeButtons = document.querySelectorAll('.edit-mode-buttons');
+	if (editModeButtons) {
+		editModeButtons.forEach((element) => {
+			element.firstElementChild.click();
+		});
+	}
 	const lists = [];
 	mainListNodeContainer.childNodes.forEach((list) => {
 		const listObj = {
@@ -322,7 +328,17 @@ const saveChanges = () => {
 		};
 		lists.push(listObj);
 	});
-	console.log(lists);
+	console.log('Saving lists', lists);
+	localStorage.setItem('lists', JSON.stringify(lists));
 };
 
-saveChanges();
+//saveChanges();
+
+if (localStorage.getItem('lists')) {
+	const lists = JSON.parse(localStorage.getItem('lists'));
+	console.log('loaded from local storage', lists);
+	mainListNodeContainer.innerHTML = '';
+	for (let i = 0; i < lists.length; i++) {
+		createFullList(lists[i].listName, lists[i].listEntries);
+	}
+}
