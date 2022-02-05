@@ -270,28 +270,6 @@ const createListObject = (listName, ...entries) => {
 	return obj;
 };
 
-// const lists = [
-// 	createListObject(
-// 		'Test 1',
-// 		'This is entry test number two',
-// 		'You can edit and move entries, (Even in edit mode!)'
-// 	),
-// 	createListObject(
-// 		'Second list, wow',
-// 		'You can create as many lists as you like',
-// 		'Hovewer the lists are stored until you reset or close this website (there is no backend)'
-// 	),
-// 	createListObject(
-// 		'Thats fun',
-// 		'Check links at the bottom to check out more of my projects',
-// 		'Lorem ipsum'
-// 	),
-// ];
-
-// lists.forEach((list) => {
-// 	createFullList(list.name, list.entries);
-// });
-
 // const todoListApp = {
 // 	list: {
 // 		create: createFullList,
@@ -341,4 +319,25 @@ if (localStorage.getItem('lists')) {
 	for (let i = 0; i < lists.length; i++) {
 		createFullList(lists[i].listName, lists[i].listEntries);
 	}
+} else {
+	const lists = [
+		createListObject(
+			'Test 1',
+			'This is entry test number two',
+			'You can edit and move entries, (Even in edit mode!)'
+		),
+		createListObject(
+			'Second list, wow',
+			'You can create as many lists as you like',
+			'Hovewer the lists are stored until you reset or close this website (there is no backend)'
+		),
+		createListObject(
+			'Thats fun',
+			'Check links at the bottom to check out more of my projects',
+			'Lorem ipsum'
+		),
+	];
+	lists.forEach((list) => {
+		createFullList(list.name, list.entries);
+	});
 }
