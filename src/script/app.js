@@ -20,21 +20,11 @@ const addElementsToContainer = (container, elementsArray) => {
 	});
 };
 
-const createCustomNode = (elementType, icon, customClassname, callbackFunc, object) => {
+const createCustomNode = (elementType, object) => {
 	const button = document.createElement(elementType);
-	if (icon) {
-		button.innerHTML = icon;
-	}
-	if (customClassname) {
-		button.classList.add(customClassname);
-	}
-	if (callbackFunc) {
-		button.addEventListener('click', callbackFunc);
-	}
 	if (object) {
-		console.log(object.text);
-		object.callbackFunc ? button.addEventListener('click', callbackFunc) : 0;
-		object.customClassname ? button.classList.add(customClassname) : 0;
+		object.callbackFunc ? button.addEventListener('click', object.callbackFunc) : 0;
+		object.customClassname ? button.classList.add(object.customClassname) : 0;
 		object.icon ? (button.innerHTML = object.icon) : 0;
 		object.placeholder ? (button.placeholder = object.placeholder) : 0;
 		object.text ? (button.innerText = object.text) : 0;
@@ -44,19 +34,20 @@ const createCustomNode = (elementType, icon, customClassname, callbackFunc, obje
 };
 
 const createUpDownButtons = () => {
-	const buttonsContainer = createCustomNode('div', null, 'up-down-container');
-	const up = createCustomNode(
-		'button',
-		'<i class="fas fa-angle-up"></i>',
-		'up-list-btn',
-		moveListItem
-	);
-	const down = createCustomNode(
-		'button',
-		'<i class="fas fa-angle-down"></i>',
-		'down-list-btn',
-		moveListItem
-	);
+	const buttonsContainer = createCustomNode('div', {
+		icon: null,
+		customClassname: 'up-down-container',
+	});
+	const up = createCustomNode('button', {
+		icon: '<i class="fas fa-angle-up"></i>',
+		customClassname: 'up-list-btn',
+		callbackFunc: moveListItem,
+	});
+	const down = createCustomNode('button', {
+		icon: '<i class="fas fa-angle-down"></i>',
+		customClassname: 'down-list-btn',
+		callbackFunc: moveListItem,
+	});
 	addElementsToContainer(buttonsContainer, [up, down]);
 	return buttonsContainer;
 };
@@ -70,19 +61,25 @@ const editModeRestore = (element, oldText = '') => {
 };
 
 const createEditModeButtons = (oldText) => {
-	const confirm = createCustomNode('button', '<i class="fas fa-check"></i>', null, () =>
-		editModeRestore(confirm)
-	);
-	const decline = createCustomNode('button', '<i class="fas fa-times"></i>', null, () =>
-		editModeRestore(decline, oldText)
-	);
-	const wrapper = createCustomNode('section', null, 'edit-mode-buttons');
+	const confirm = createCustomNode('button', {
+		icon: '<i class="fas fa-check"></i>',
+		callbackFunc: () => editModeRestore(confirm),
+	});
+	const decline = createCustomNode('button', {
+		icon: '<i class="fas fa-times"></i>',
+		callbackFunc: () => editModeRestore(decline, oldText),
+	});
+	const wrapper = createCustomNode('section', {
+		customClassname: 'edit-mode-buttons',
+	});
 	addElementsToContainer(wrapper, [confirm, createUpDownButtons(), decline]);
 	return wrapper;
 };
 
 const createEditModeElements = (userText) => {
-	const editModeWrapper = createCustomNode('div', null, 'edit-mode');
+	const editModeWrapper = createCustomNode('div', {
+		customClassname: 'edit-mode',
+	});
 	const listInput = document.createElement('input');
 	const buttonsWrapper = createEditModeButtons(userText);
 	listInput.value = userText;
@@ -99,12 +96,11 @@ const editModeLauncher = (e) => {
 };
 
 const createEditButton = () =>
-	createCustomNode(
-		'button',
-		'<i class="fas fa-wrench"></i>',
-		'entry-edit-button',
-		editModeLauncher
-	);
+	createCustomNode('button', {
+		icon: '<i class="fas fa-wrench"></i>',
+		customClassname: 'entry-edit-button',
+		callbackFunc: editModeLauncher,
+	});
 
 const moveListItem = (e) => {
 	const buttonClassTypes = {
@@ -153,15 +149,16 @@ const moveListItem = (e) => {
 };
 
 const createDeleteEntryButton = () =>
-	createCustomNode(
-		'button',
-		'<i class="fas fa-trash-alt"></i>',
-		'delete-entry-button',
-		(e) => e.target.closest('.list-entry').remove()
-	);
+	createCustomNode('button', {
+		icon: '<i class="fas fa-trash-alt"></i>',
+		customClassname: 'delete-entry-button',
+		callbackFunc: (e) => e.target.closest('.list-entry').remove(),
+	});
 
 const createEntryButtons = () => {
-	const entryButtonsContainer = createCustomNode('section', null, 'list-entry-buttons');
+	const entryButtonsContainer = createCustomNode('section', {
+		customClassname: 'list-entry-buttons',
+	});
 	addElementsToContainer(entryButtonsContainer, [
 		createEditButton(),
 		createUpDownButtons(),
@@ -171,8 +168,12 @@ const createEntryButtons = () => {
 };
 
 const createListEntry = (userInputText) => {
-	const entryLine = createCustomNode('div', null, 'list-entry');
-	const entryText = createCustomNode('section', null, 'user-entry-text');
+	const entryLine = createCustomNode('div', {
+		customClassname: 'list-entry',
+	});
+	const entryText = createCustomNode('section', {
+		customClassname: 'user-entry-text',
+	});
 	entryText.innerText = userInputText;
 	addElementsToContainer(entryLine, [entryText, createEntryButtons()]);
 	return entryLine;
@@ -186,17 +187,22 @@ const getNewListName = () => {
 };
 
 const createListNodeEntryInput = () => {
-	const ListNodeEntryInput = createCustomNode('section', null, 'list-nav');
-	const addButton = createCustomNode('button', null, 'add-list-entry', () => {
-		if (entryInput.value > '') {
-			const entryContainer = addButton.parentElement;
-			entryContainer.parentElement
-				.querySelector('.list-entry-container')
-				.appendChild(createListEntry(entryInput.value));
-			entryInput.value = '';
-		} else {
-			alert('Cannot add an empty list entry');
-		}
+	const ListNodeEntryInput = createCustomNode('section', {
+		customClassname: 'list-nav',
+	});
+	const addButton = createCustomNode('button', {
+		customClassname: 'add-list-entry',
+		callbackFunc: () => {
+			if (entryInput.value > '') {
+				const entryContainer = addButton.parentElement;
+				entryContainer.parentElement
+					.querySelector('.list-entry-container')
+					.appendChild(createListEntry(entryInput.value));
+				entryInput.value = '';
+			} else {
+				alert('Cannot add an empty list entry');
+			}
+		},
 	});
 	addButton.innerText = 'Add';
 	const entryInput = document.createElement('input');
@@ -206,15 +212,14 @@ const createListNodeEntryInput = () => {
 };
 
 const createListDeleteButton = () =>
-	createCustomNode(
-		'button',
-		'<i class="fas fa-trash-alt"></i>',
-		'delete-list-button',
-		(e) => e.target.closest('.list-container').remove()
-	);
+	createCustomNode('button', {
+		icon: '<i class="fas fa-trash-alt"></i>',
+		customClassname: 'delete-list-button',
+		callbackFunc: (e) => e.target.closest('.list-container').remove(),
+	});
 
 const createListEntryContainer = () =>
-	createCustomNode('main', null, 'list-entry-container');
+	createCustomNode('main', { customClassname: 'list-entry-container' });
 
 const createListNodeHeader = (listInputName) => {
 	const listHeader = document.createElement('header');
@@ -226,7 +231,9 @@ const createListNodeHeader = (listInputName) => {
 
 const createListNode = (userInputName) => {
 	if (userInputName > '') {
-		const listContainer = createCustomNode('div', null, 'list-container');
+		const listContainer = createCustomNode('div', {
+			customClassname: 'list-container',
+		});
 		const listHeader = createListNodeHeader(userInputName);
 		addElementsToContainer(listContainer, [
 			listHeader,
