@@ -97,6 +97,9 @@ body {
 }
 
 .list-container {
+	.list-entry-container {
+		min-height: 60px;
+	}
 	input {
 		&:hover {
 			background-color: lightgray;
@@ -221,6 +224,11 @@ body {
 			padding: 5px 10px;
 			border-radius: var(--uni-radius);
 		}
+		> button {
+			&:hover {
+				outline: 1px gray solid;
+			}
+		}
 		display: flex;
 		gap: 5px;
 		.up-down-container {
@@ -294,4 +302,10 @@ body {
 			}
 		}
 	}
+}
+
+.dragging {
+	border: 2px blue dashed;
+	cursor: grabbing;
+	transform: scale(0.98);
 }

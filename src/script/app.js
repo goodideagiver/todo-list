@@ -1,7 +1,5 @@
 const mainListNodeContainer = document.querySelector('#listsContainer');
 
-
-
 addListButton.addEventListener('click', () => {
 	const getListName = getNewListName();
 	if (getListName > '') {
@@ -81,3 +79,5 @@ if (localStorage.getItem('lists')) {
 		createFullList(list.name, list.entries);
 	});
 }
+
+launchDragging();

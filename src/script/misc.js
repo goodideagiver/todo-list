@@ -19,6 +19,7 @@ const saveChanges = () => {
 	});
 	console.log('Saving lists', lists);
 	localStorage.setItem('lists', JSON.stringify(lists));
+	launchDragging();
 };
 
 const addElementsToContainer = (container, elementsArray) => {
@@ -46,6 +47,7 @@ const createCustomNode = (elementType, object) => {
 		object.text ? (button.innerText = object.text) : 0;
 		object.input ? (button.value = object.input) : 0;
 		object.saveOnClick ? button.addEventListener('click', saveChanges) : 0;
+		object.draggable ? button.setAttribute('draggable','true') : 0;
 	}
 	return button;
 };

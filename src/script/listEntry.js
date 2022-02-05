@@ -158,6 +158,7 @@ const createEntryButtons = () => {
 const createListEntry = (userInputText) => {
 	const entryLine = createCustomNode('div', {
 		customClassname: 'list-entry',
+		draggable: true,
 	});
 	const entryText = createCustomNode('section', {
 		customClassname: 'user-entry-text',
