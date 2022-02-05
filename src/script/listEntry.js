@@ -78,6 +78,8 @@ const editModeLauncher = (e) => {
 	const userEntryElement = listEntry.querySelector('.user-entry-text');
 	listEntry.innerHTML = '';
 	listEntry.appendChild(createEditModeElements(userEntryElement.innerText));
+	listEntry.querySelector('input').click();
+	listEntry.querySelector('input').focus();
 };
 
 const createEditButton = () =>
