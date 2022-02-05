@@ -1,5 +1,7 @@
+const addListButton = document.querySelector('#addList');
+const newListNameElement = document.querySelector('#listName');
+
 const getNewListName = () => {
-	const newListNameElement = document.querySelector('#listName');
 	const newListName = newListNameElement.value;
 	newListNameElement.value = '';
 	return newListName;
@@ -26,6 +28,7 @@ const createListNodeEntryInput = () => {
 	});
 	addButton.innerText = 'Add';
 	const entryInput = createCustomNode('input', { placeholder: 'List entry name' });
+	clickElementOnEnterPress(entryInput, addButton);
 	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton]);
 	return ListNodeEntryInput;
 };
@@ -65,3 +68,5 @@ const createListNode = (userInputName) => {
 		return;
 	}
 };
+
+clickElementOnEnterPress(newListNameElement, addListButton);

@@ -1,5 +1,6 @@
 const mainListNodeContainer = document.querySelector('#listsContainer');
-const addListButton = document.querySelector('#addList');
+
+
 
 addListButton.addEventListener('click', () => {
 	const getListName = getNewListName();

@@ -23,6 +23,15 @@ const addElementsToContainer = (container, elementsArray) => {
 	});
 };
 
+const clickElementOnEnterPress = (element, elementToPress) => {
+	element.addEventListener('keyup', (e) => {
+		if (e.keyCode === 13) {
+			e.preventDefault();
+			elementToPress.click();
+		}
+	});
+};
+
 const createCustomNode = (elementType, object) => {
 	const button = document.createElement(elementType);
 	if (object) {
