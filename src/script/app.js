@@ -20,7 +20,7 @@ const addElementsToContainer = (container, elementsArray) => {
 	});
 };
 
-const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
+const createCustomNode = (elementType, icon, customClassname, callbackFunc, object) => {
 	const button = document.createElement(elementType);
 	if (icon) {
 		button.innerHTML = icon;
@@ -30,6 +30,15 @@ const createCustomNode = (elementType, icon, customClassname, callbackFunc) => {
 	}
 	if (callbackFunc) {
 		button.addEventListener('click', callbackFunc);
+	}
+	if (object) {
+		console.log(object.text);
+		object.callbackFunc ? button.addEventListener('click', callbackFunc) : 0;
+		object.customClassname ? button.classList.add(customClassname) : 0;
+		object.icon ? (button.innerHTML = object.icon) : 0;
+		object.placeholder ? (button.placeholder = object.placeholder) : 0;
+		object.text ? (button.innerText = object.text) : 0;
+		object.input ? (button.value = object.input) : 0;
 	}
 	return button;
 };
