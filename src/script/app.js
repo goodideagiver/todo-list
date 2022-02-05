@@ -221,8 +221,7 @@ const createListEntryContainer = () =>
 
 const createListNodeHeader = (listInputName) => {
 	const listHeader = document.createElement('header');
-	const listName = document.createElement('h2');
-	listName.innerText = listInputName;
+	const listName = createCustomNode('h2', { text: listInputName });
 	addElementsToContainer(listHeader, [listName, createListDeleteButton()]);
 	return listHeader;
 };
