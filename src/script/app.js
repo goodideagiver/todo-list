@@ -204,8 +204,7 @@ const createListNodeEntryInput = () => {
 		},
 	});
 	addButton.innerText = 'Add';
-	const entryInput = document.createElement('input');
-	entryInput.placeholder = 'List entry name';
+	const entryInput = createCustomNode('input', { placeholder: 'List entry name' });
 	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton]);
 	return ListNodeEntryInput;
 };
