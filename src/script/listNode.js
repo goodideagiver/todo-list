@@ -12,7 +12,7 @@ const createListNodeEntryInput = () => {
 		customClassname: 'list-nav',
 	});
 	const addButton = createCustomNode('button', {
-		text: 'Add',
+		icon: '<i class="fas fa-sign-in-alt"></i>',
 		customClassname: 'add-list-entry',
 		saveOnClick: true,
 		callbackFunc: () => {
@@ -28,7 +28,8 @@ const createListNodeEntryInput = () => {
 		},
 	});
 	const sortList = createCustomNode('button', {
-		text: 'Sort',
+		icon: '<i class="fas fa-sort-alpha-down"></i>',
+		customClassname: 'sort-list-button',
 		callbackFunc: (e) => sortEntryList(e.target),
 	});
 	const entryInput = createCustomNode('input', { placeholder: 'List entry name' });
