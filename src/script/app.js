@@ -290,4 +290,26 @@ const todoListApp = {
 	},
 };
 
-todoListApp.list.create('Testowa lista', ['test']);
+todoListApp.list.create('Test list', ['test']);
+
+const getEntriesText = (parentList) => {
+	let textList = [];
+	parentList.querySelectorAll('.list-entry').forEach((element) => {
+		textList.push(element.querySelector('.user-entry-text').innerText);
+	});
+	return textList;
+};
+
+const saveChanges = () => {
+	const lists = [];
+	mainListNodeContainer.childNodes.forEach((list) => {
+		const listObj = {
+			listName: list.querySelector('header h2').innerText,
+			listEntries: getEntriesText(list),
+		};
+		lists.push(listObj);
+	});
+	console.log(lists);
+};
+
+saveChanges();
