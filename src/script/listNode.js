@@ -32,7 +32,7 @@ const createListNodeEntryInput = () => {
 		customClassname: 'sort-list-button',
 		callbackFunc: (e) => sortEntryList(e.target),
 	});
-	const entryInput = createCustomNode('input', { placeholder: 'List entry name' });
+	const entryInput = createCustomNode('input', { placeholder: 'New list entry' });
 	clickElementOnEnterPress(entryInput, addButton);
 	addElementsToContainer(ListNodeEntryInput, [entryInput, addButton, sortList]);
 	return ListNodeEntryInput;

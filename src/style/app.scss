@@ -73,9 +73,10 @@ body {
 		label {
 			text-align: center;
 			font-weight: bold;
+			cursor: pointer;
 		}
 		input {
-			padding: 5px 5px;
+			padding: 10px;
 			flex: 1 1 0;
 			background-color: transparent;
 			border: 1px var(--font-color) dashed;
@@ -89,7 +90,8 @@ body {
 	}
 	button {
 		align-items: center;
-		padding: 5px 10px;
+		padding: 10px;
+		font-size: 1.2rem;
 		display: flex;
 		gap: 10px;
 		background-color: var(--main-bg-color);
@@ -99,7 +101,7 @@ body {
 		text-align: center;
 		cursor: pointer;
 		&:hover {
-			color: blue;
+			color: var(--main-bg-color);
 			background-color: var(--darker-bg-on-hover);
 		}
 		&:active {
@@ -220,10 +222,11 @@ body {
 		display: flex;
 		gap: 5px;
 		input {
+			color: var(--font-color);
 			font-size: 1rem;
 			flex-basis: 100%;
 			padding: 0 10px;
-			outline: rgba(0, 0, 0, 0.5) 1px dashed;
+			outline: var(--outline-and-border) 2px dashed;
 		}
 	}
 	.entry-edit-button {
@@ -236,7 +239,7 @@ body {
 	gap: 10px;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 1px rgba(0, 0, 0, 0.438) solid;
+	border-bottom: 1px var(--outline-and-border) solid;
 	border-radius: 0;
 	padding-bottom: 5px;
 	&:hover {
