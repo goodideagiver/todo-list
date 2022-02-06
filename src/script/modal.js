@@ -49,7 +49,9 @@ const modalGenerator = (title, modal) => {
 
 const showModal = (title, modal) => {
 	modalBackdrop.style.display = '';
-	modalBackdrop.append(modalGenerator(title, modal));
+	const newModal = modalGenerator(title, modal);
+	modalBackdrop.append(newModal);
+	newModal.querySelector('.modal-action').lastElementChild.focus();
 };
 
 modalBackdrop.addEventListener('click', (e) => {

@@ -32,23 +32,33 @@ const createUpDownButtons = () => {
 	return buttonsContainer;
 };
 
-const editModeRestore = (element, oldText = '') => {
+const editModeRestore = (element, oldText, save) => {
 	const listEntry = element.closest('.list-entry');
-	const userText = oldText > '' ? oldText : listEntry.querySelector('input').value;
+	const inputValue = listEntry.querySelector('input').value.trim();
+	let userText;
+	if (save && inputValue.trim().length > 0) {
+		userText = inputValue;
+	} else if (save) {
+		userText = oldText;
+		showModal('Warning!', { lowerText: 'You cant set entry to be empty!' });
+	} else {
+		userText = oldText;
+	}
 	const editedEntry = createListEntry(userText);
-	listEntry.parentElement.insertBefore(editedEntry, listEntry);
+	// listEntry.parentElement.insertBefore(editedEntry, listEntry);
+	listEntry.insertAdjacentElement('beforebegin', editedEntry);
 	listEntry.remove();
 };
 
 const createEditModeButtons = (oldText) => {
 	const confirm = createCustomNode('button', {
 		icon: '<i class="fas fa-check"></i>',
-		callbackFunc: () => editModeRestore(confirm),
+		callbackFunc: () => editModeRestore(confirm, oldText, true),
 		saveOnClick: true,
 	});
 	const decline = createCustomNode('button', {
 		icon: '<i class="fas fa-times"></i>',
-		callbackFunc: () => editModeRestore(decline, oldText),
+		callbackFunc: () => editModeRestore(decline, oldText, false),
 		saveOnClick: true,
 	});
 	const wrapper = createCustomNode('section', {
@@ -64,8 +74,6 @@ const createEditModeElements = (userText) => {
 	});
 	const listInput = createCustomNode('input', {
 		input: userText,
-		callbackFunc: () =>
-			clickElementOnEnterPress(listInput, editModeWrapper.querySelector('button')),
 	});
 	const buttonsWrapper = createEditModeButtons(userText);
 	addElementsToContainer(editModeWrapper, [listInput, buttonsWrapper]);
@@ -144,7 +152,6 @@ const createDeleteEntryButton = () => {
 	const deleteButton = createCustomNode('button', {
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-entry-button',
-		saveOnClick: true,
 	});
 	deleteButton.addEventListener('click', (e) => {
 		const thatButton = e.target;

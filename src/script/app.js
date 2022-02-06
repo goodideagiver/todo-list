@@ -2,11 +2,12 @@ const mainListNodeContainer = document.querySelector('#listsContainer');
 
 addListButton.addEventListener('click', () => {
 	const getListName = getNewListName();
-	if (getListName > '') {
+	if (getListName.trim() > '') {
 		mainListNodeContainer.appendChild(createListNode(getListName));
 		saveChanges();
 	} else {
-		alert('List name cannot be empty');
+		showModal('Warning!', { lowerText: `You can't enter a list with empty name.` });
+		return;
 	}
 });
 
