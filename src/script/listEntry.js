@@ -101,7 +101,7 @@ const moveListItem = (e) => {
 	const clickedEntry = clickedButton.closest('.list-entry');
 
 	if (listArray.length === 1) {
-		alert('Cant move entry when there is only one');
+		showModal('Warning!', { lowerText: `Cant move entry when there is only one.` });
 		return;
 	} else if (
 		listArray.length - 1 === listItemIndex &&
@@ -135,13 +135,27 @@ const moveListItem = (e) => {
 	}
 };
 
-const createDeleteEntryButton = () =>
-	createCustomNode('button', {
+const removeEntry = (deleteButton) => {
+	deleteButton.closest('.list-entry').remove();
+	saveChanges();
+};
+
+const createDeleteEntryButton = () => {
+	const deleteButton = createCustomNode('button', {
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-entry-button',
-		callbackFunc: (e) => e.target.closest('.list-entry').remove(),
 		saveOnClick: true,
 	});
+	deleteButton.addEventListener('click', (e) => {
+		const thatButton = e.target;
+		showModal('Confirmation needed', {
+			lowerText: 'Are you sure you want to delete this entry?',
+			yesNo: true,
+			yesFunc: () => removeEntry(thatButton),
+		});
+	});
+	return deleteButton;
+};
 
 const createEntryButtons = () => {
 	const entryButtonsContainer = createCustomNode('section', {

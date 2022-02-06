@@ -51,4 +51,14 @@
 			background-color: var(--font-color);
 		}
 	}
+	animation: modal-appear 0.1s forwards;
+}
+
+@keyframes modal-appear {
+	from {
+		transform: scale(0.1);
+	}
+	to {
+		transform: scale(1);
+	}
 }

@@ -1,3 +1,11 @@
+const modalBackdrop = document.querySelector('.modal-container');
+modalBackdrop.style.display = 'none';
+
+const disableModal = () => {
+	document.querySelector('.modal-box').remove();
+	modalBackdrop.style.display = 'none';
+};
+
 const modalGenerator = (title, modal) => {
 	if (title) {
 		const modalElement = createCustomNode('div', { customClassname: 'modal-box' });
@@ -18,15 +26,32 @@ const modalGenerator = (title, modal) => {
 				customClassname: 'btn-normal',
 				text: 'No',
 			});
+			noBtn.addEventListener('click', disableModal);
+			if (modal.yesFunc) {
+				yesBtn.addEventListener('click', (e, button) => {
+					modal.yesFunc(e, button);
+					disableModal();
+				});
+			}
 			addElementsToContainer(modalAction, [yesBtn, noBtn]);
 		} else {
 			const cancel = createCustomNode('button', {
 				customClassname: 'btn-normal',
-				text: 'Cancel',
+				text: 'Ok',
 			});
+			cancel.addEventListener('click', disableModal);
 			modalAction.append(cancel);
 		}
 		modalElement.append(modalAction);
 		return modalElement;
 	}
 };
+
+const showModal = (title, modal) => {
+	modalBackdrop.style.display = '';
+	modalBackdrop.append(modalGenerator(title, modal));
+};
+
+modalBackdrop.addEventListener('click', (e) => {
+	e.target === modalBackdrop ? disableModal() : 0;
+});

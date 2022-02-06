@@ -23,7 +23,7 @@ const createListNodeEntryInput = () => {
 					.appendChild(createListEntry(entryInput.value));
 				entryInput.value = '';
 			} else {
-				alert('Cannot add an empty list entry');
+				showModal('Warning!', { lowerText: 'Cannot add an empty list entry' });
 			}
 		},
 	});
@@ -69,7 +69,7 @@ const createListNode = (userInputName) => {
 		]);
 		return listContainer;
 	} else {
-		alert('List name cannot be empty');
+		showModal('Warning!', { lowerText: 'List name cannot be empty' });
 		return;
 	}
 };
