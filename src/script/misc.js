@@ -57,10 +57,12 @@ const createCustomNode = (elementType, object) => {
 const toggleTheme = () => {
 	if (document.body.classList.contains('dark-mode')) {
 		document.body.classList.remove('dark-mode');
+		document.body.classList.add('light-mode');
 		localStorage.setItem('darkmode', 'false');
 	} else {
 		localStorage.setItem('darkmode', 'true');
 		document.body.classList.add('dark-mode');
+		document.body.classList.remove('light-mode');
 	}
 };
 
@@ -69,8 +71,10 @@ const setThemeOnLaunch = () => {
 	console.log(savedTheme);
 	if (savedTheme === 'true') {
 		document.body.classList.add('dark-mode');
+		document.body.classList.remove('light-mode');
 	} else if (savedTheme === 'false') {
 		document.body.classList.remove('dark-mode');
+		document.body.classList.add('light-mode');
 	}
 };
 

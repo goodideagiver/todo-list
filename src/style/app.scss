@@ -7,15 +7,15 @@
 	--body-color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--main-bg-color: rgb(40, 40, 40);
-		--darker-bg-on-hover: rgb(92, 92, 92);
-		--outline-and-border: rgba(248, 248, 248, 0.555);
-		--font-color: rgb(231, 231, 231);
-		--body-color: rgb(30, 30, 30);
-	}
-}
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		--main-bg-color: rgb(40, 40, 40);
+// 		--darker-bg-on-hover: rgb(92, 92, 92);
+// 		--outline-and-border: rgba(248, 248, 248, 0.555);
+// 		--font-color: rgb(231, 231, 231);
+// 		--body-color: rgb(30, 30, 30);
+// 	}
+// }
 
 .dark-mode {
 	--main-bg-color: rgb(40, 40, 40);
@@ -23,6 +23,14 @@
 	--outline-and-border: rgba(248, 248, 248, 0.555);
 	--font-color: rgb(231, 231, 231);
 	--body-color: rgb(30, 30, 30);
+}
+
+.light-mode {
+	--main-bg-color: rgb(255, 255, 255);
+	--darker-bg-on-hover: lightgray;
+	--outline-and-border: gray;
+	--font-color: black;
+	--body-color: white;
 }
 
 * {
