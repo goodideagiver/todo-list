@@ -179,6 +179,7 @@ body {
 		justify-content: flex-start;
 		padding: 10px;
 		align-items: center;
+		word-break: break-all;
 	}
 	.list-nav {
 		padding: 5px;
@@ -220,6 +221,7 @@ body {
 }
 
 .list-entry {
+	word-break: break-all;
 	&:only-child {
 		.up-down-container {
 			display: none !important;
