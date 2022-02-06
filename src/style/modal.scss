@@ -1,0 +1,54 @@
+// --uni-radius: 8px;
+// --main-bg-color: rgb(255, 255, 255);
+// --darker-bg-on-hover: lightgray;
+// --outline-and-border: gray;
+// --font-color: black;
+// --body-color: white;
+
+.modal-container {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.818);
+	z-index: 500;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-box {
+	background-color: var(--body-color);
+	border-radius: var(--uni-radius);
+	padding: 20px;
+	margin: 10px;
+	h2 {
+		font-size: 1.5rem;
+	}
+	.modal-action {
+		margin-top: 20px;
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		button {
+			color: var(--font-color);
+			font-size: 1rem;
+			padding: 5px 20px;
+			border-radius: var(--uni-radius);
+			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+		.btn-danger {
+			color: var(--outline-and-border);
+			text-decoration: underline;
+			outline: 1px solid var(--outline-and-border);
+		}
+		.btn-normal {
+			color: var(--body-color);
+			background-color: var(--font-color);
+		}
+	}
+}

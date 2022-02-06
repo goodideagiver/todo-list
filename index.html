@@ -35,11 +35,13 @@
 		<link rel="stylesheet" href="src/style/css/min/app.min.css" />
 		<script defer src="src/script/drag.js"></script>
 		<script defer src="src/script/misc.js"></script>
+		<script defer src="src/script/modal.js"></script>
 		<script defer src="src/script/listEntry.js"></script>
 		<script defer src="src/script/listNode.js"></script>
 		<script defer src="src/script/app.js"></script>
 		<!-- Primary Meta Tags -->
 		<title>To do list</title>
+		<link rel="stylesheet" href="src/style/css/min/modal.min.css" />
 		<meta name="title" content="To do list" />
 		<meta
 			name="description"
@@ -97,5 +99,15 @@ Create multiple to do lists and edit them as you like."
 				</li>
 			</ul>
 		</footer>
+		<div class="modal-container">
+			<div class="modal-box">
+				<h2>Modal message</h2>
+				<p>Additional info</p>
+				<div class="modal-action">
+					<button class="btn-danger">Yes</button>
+					<button class="btn-normal">No</button>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
