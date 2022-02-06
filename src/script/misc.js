@@ -1,3 +1,5 @@
+const themeSwitcher = document.querySelector('#switchTheme');
+
 const disableEditMode = () => {
 	const editModeButtons = document.querySelectorAll('.edit-mode-buttons');
 	if (editModeButtons) {
@@ -47,7 +49,31 @@ const createCustomNode = (elementType, object) => {
 		object.text ? (button.innerText = object.text) : 0;
 		object.input ? (button.value = object.input) : 0;
 		object.saveOnClick ? button.addEventListener('click', saveChanges) : 0;
-		object.draggable ? button.setAttribute('draggable','true') : 0;
+		object.draggable ? button.setAttribute('draggable', 'true') : 0;
 	}
 	return button;
 };
+
+const toggleTheme = () => {
+	if (document.body.classList.contains('dark-mode')) {
+		document.body.classList.remove('dark-mode');
+		localStorage.setItem('darkmode', 'false');
+	} else {
+		localStorage.setItem('darkmode', 'true');
+		document.body.classList.add('dark-mode');
+	}
+};
+
+const setThemeOnLaunch = () => {
+	const savedTheme = localStorage.getItem('darkmode');
+	console.log(savedTheme);
+	if (savedTheme === 'true') {
+		document.body.classList.add('dark-mode');
+	} else if (savedTheme === 'false') {
+		document.body.classList.remove('dark-mode');
+	}
+};
+
+themeSwitcher.addEventListener('click', toggleTheme);
+
+setThemeOnLaunch();

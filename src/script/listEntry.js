@@ -1,9 +1,9 @@
-const getListEntryIndex = (element) => {
-	const listEntry = element.closest('.list-entry');
-	const allParentListElements = listEntry.parentElement.children;
+const getListEntryIndex = (clickedElement) => {
+	const clickedEntry = clickedElement.closest('.list-entry');
+	const allEntriesInCurrentList = clickedEntry.parentElement.children;
 	let foundIndex;
-	for (let i = 0; i < allParentListElements.length; i++) {
-		foundIndex = allParentListElements[i] === listEntry ? i : 'match not found';
+	for (let i = 0; i < allEntriesInCurrentList.length; i++) {
+		foundIndex = allEntriesInCurrentList[i] === clickedEntry ? i : 'match not found';
 		if (i === foundIndex) {
 			break;
 		}
@@ -75,9 +75,9 @@ const createEditModeElements = (userText) => {
 const editModeLauncher = (e) => {
 	const editButton = e.target;
 	const listEntry = editButton.closest('.list-entry');
-	const userEntryElement = listEntry.querySelector('.user-entry-text').innerText;
+	const listEntryUserText = listEntry.querySelector('.user-entry-text').innerText;
 	listEntry.innerHTML = '';
-	listEntry.appendChild(createEditModeElements(userEntryElement));
+	listEntry.appendChild(createEditModeElements(listEntryUserText));
 	listEntry.querySelector('input').click();
 	listEntry.querySelector('input').focus();
 };

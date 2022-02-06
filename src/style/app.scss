@@ -15,6 +15,13 @@
 	}
 }
 
+.dark-mode {
+	--main-bg-color: rgb(40, 40, 40);
+	--darker-bg-on-hover: rgb(92, 92, 92);
+	--outline-and-border: rgba(248, 248, 248, 0.555);
+	--font-color: rgb(231, 231, 231);
+}
+
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -309,17 +316,23 @@ body {
 @media (max-width: 500px) {
 	.main-app-nav {
 		flex-wrap: wrap;
-		* {
-			flex: 1 1 400px !important;
+		> * {
+			flex: 1 1 150px !important;
 		}
 		input,
 		button {
 			padding: 10px 10px !important;
+			flex-basis: 50px !important;
+			white-space: nowrap;
 		}
 		form {
 			> * {
 				flex: 1 1 0 !important;
 			}
+		}
+		.input-div {
+			flex-wrap: wrap;
+			white-space: nowrap;
 		}
 	}
 }
