@@ -4,6 +4,7 @@
 	--darker-bg-on-hover: lightgray;
 	--outline-and-border: gray;
 	--font-color: black;
+	--body-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +13,7 @@
 		--darker-bg-on-hover: rgb(92, 92, 92);
 		--outline-and-border: rgba(248, 248, 248, 0.555);
 		--font-color: rgb(231, 231, 231);
+		--body-color: rgb(30, 30, 30);
 	}
 }
 
@@ -20,6 +22,7 @@
 	--darker-bg-on-hover: rgb(92, 92, 92);
 	--outline-and-border: rgba(248, 248, 248, 0.555);
 	--font-color: rgb(231, 231, 231);
+	--body-color: rgb(30, 30, 30);
 }
 
 * {
@@ -33,7 +36,7 @@
 }
 
 body {
-	background-color: var(--main-bg-color);
+	background-color: var(--body-color);
 	color: var(--font-color);
 	min-height: 100vh;
 	display: flex;
