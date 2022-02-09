@@ -19,16 +19,56 @@
 // 	);
 // };
 
+const getDragElement = (container, y) => {
+	const dragoverElements = [
+		...container.querySelectorAll('.list-entry:not(.dragging)'),
+	];
+	return dragoverElements.reduce(
+		(closest, child) => {
+			const box = child.getBoundingClientRect();
+			const offset = y - box.top - box.height / 2;
+			if (offset < 0 && offset > closest.offset) {
+				return { offset: offset, element: child };
+			} else {
+				return closest;
+			}
+		},
+		{
+			offset: Number.NEGATIVE_INFINITY,
+		}
+	);
+
+	//return dragoverElements;
+};
+
 const addDraggingFunc = targetElement => {
 	targetElement.addEventListener('dragstart', () => {
 		targetElement.classList.add('dragging');
+
 		targetElement.addEventListener('dragend', () => {
 			targetElement.classList.remove('dragging');
 		});
 	});
 };
 
-const dragOverHandler = container => {};
+const dragOverHandler = container => {
+	const entries = container.getElementsByClassName('list-entry');
+	container.addEventListener('dragover', e => {
+		console.log(getDragElement(container, e.clientY));
+		//container.append(document.querySelector('.dragging'));
+		const checkPos = getDragElement(container, e.clientY);
+		if (checkPos.offset === -Infinity) {
+			container.append(document.querySelector('.dragging'));
+			console.log('dodaj na koncu');
+		} else if (checkPos.element !== undefined) {
+			container.insertAdjacentElement('afterend', checkPos.element);
+			console.log('dodaj za elementem');
+		} else {
+			console.log('chuj');
+			return;
+		}
+	});
+};
 
 // const launchDragging = () => {
 // 	document.querySelectorAll('.list-entry').forEach(draggable => {

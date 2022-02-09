@@ -30,7 +30,7 @@ const createListNodeEntryInput = () => {
 	const sortList = createCustomNode('button', {
 		icon: '<i class="fas fa-sort-alpha-down"></i>',
 		customClassname: 'sort-list-button',
-		callbackFunc: (e) => sortEntryList(e.target),
+		callbackFunc: e => sortEntryList(e.target),
 	});
 	const entryInput = createCustomNode('input', { placeholder: 'New list entry' });
 	clickElementOnEnterPress(entryInput, addButton);
@@ -43,20 +43,25 @@ const createListDeleteButton = () =>
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-list-button',
 		saveOnClick: true,
-		callbackFunc: (e) => e.target.closest('.list-container').remove(),
+		callbackFunc: e => e.target.closest('.list-container').remove(),
 	});
 
-const createListEntryContainer = () =>
-	createCustomNode('main', { customClassname: 'list-entry-container' });
+const createListEntryContainer = () => {
+	const entryList = createCustomNode('main', {
+		customClassname: 'list-entry-container',
+	});
+	dragOverHandler(entryList);
+	return entryList;
+};
 
-const createListNodeHeader = (listInputName) => {
+const createListNodeHeader = listInputName => {
 	const listHeader = document.createElement('header');
 	const listName = createCustomNode('h2', { text: listInputName });
 	addElementsToContainer(listHeader, [listName, createListDeleteButton()]);
 	return listHeader;
 };
 
-const createListNode = (userInputName) => {
+const createListNode = userInputName => {
 	if (userInputName > '') {
 		const listContainer = createCustomNode('div', {
 			customClassname: 'list-container',
