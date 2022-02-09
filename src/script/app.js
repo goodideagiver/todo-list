@@ -80,5 +80,3 @@ if (localStorage.getItem('lists')) {
 		createFullList(list.name, list.entries);
 	});
 }
-
-launchDragging();

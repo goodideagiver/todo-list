@@ -3,7 +3,7 @@ const themeSwitcher = document.querySelector('#switchTheme');
 const disableEditMode = () => {
 	const editModeButtons = document.querySelectorAll('.edit-mode-buttons');
 	if (editModeButtons) {
-		editModeButtons.forEach((element) => {
+		editModeButtons.forEach(element => {
 			element.firstElementChild.click();
 		});
 	}
@@ -12,7 +12,7 @@ const disableEditMode = () => {
 const saveChanges = () => {
 	disableEditMode();
 	const lists = [];
-	mainListNodeContainer.childNodes.forEach((list) => {
+	mainListNodeContainer.childNodes.forEach(list => {
 		const listObj = {
 			listName: list.querySelector('header h2').innerText,
 			listEntries: getEntriesText(list),
@@ -21,17 +21,16 @@ const saveChanges = () => {
 	});
 	console.log('Saving lists', lists);
 	localStorage.setItem('lists', JSON.stringify(lists));
-	launchDragging();
 };
 
 const addElementsToContainer = (container, elementsArray) => {
-	elementsArray.forEach((element) => {
+	elementsArray.forEach(element => {
 		container.appendChild(element);
 	});
 };
 
 const clickElementOnEnterPress = (element, elementToPress) => {
-	element.addEventListener('keyup', (e) => {
+	element.addEventListener('keyup', e => {
 		if (e.keyCode === 13) {
 			e.preventDefault();
 			elementToPress.click();

@@ -1,4 +1,4 @@
-const getListEntryIndex = (clickedElement) => {
+const getListEntryIndex = clickedElement => {
 	const clickedEntry = clickedElement.closest('.list-entry');
 	const allEntriesInCurrentList = clickedEntry.parentElement.children;
 	let foundIndex;
@@ -50,7 +50,7 @@ const editModeRestore = (element, oldText, save) => {
 	listEntry.remove();
 };
 
-const createEditModeButtons = (oldText) => {
+const createEditModeButtons = oldText => {
 	const confirm = createCustomNode('button', {
 		icon: '<i class="fas fa-check"></i>',
 		callbackFunc: () => editModeRestore(confirm, oldText, true),
@@ -68,7 +68,7 @@ const createEditModeButtons = (oldText) => {
 	return wrapper;
 };
 
-const createEditModeElements = (userText) => {
+const createEditModeElements = userText => {
 	const editModeWrapper = createCustomNode('div', {
 		customClassname: 'edit-mode',
 	});
@@ -80,7 +80,7 @@ const createEditModeElements = (userText) => {
 	return editModeWrapper;
 };
 
-const editModeLauncher = (e) => {
+const editModeLauncher = e => {
 	const editButton = e.target;
 	const listEntry = editButton.closest('.list-entry');
 	const listEntryUserText = listEntry.querySelector('.user-entry-text').innerText;
@@ -97,7 +97,7 @@ const createEditButton = () =>
 		callbackFunc: editModeLauncher,
 	});
 
-const moveListItem = (e) => {
+const moveListItem = e => {
 	const buttonClassTypes = {
 		up: 'up-list-btn',
 		down: 'down-list-btn',
@@ -143,7 +143,7 @@ const moveListItem = (e) => {
 	}
 };
 
-const removeEntry = (deleteButton) => {
+const removeEntry = deleteButton => {
 	deleteButton.closest('.list-entry').remove();
 	saveChanges();
 };
@@ -153,7 +153,7 @@ const createDeleteEntryButton = () => {
 		icon: '<i class="fas fa-trash-alt"></i>',
 		customClassname: 'delete-entry-button',
 	});
-	deleteButton.addEventListener('click', (e) => {
+	deleteButton.addEventListener('click', e => {
 		const thatButton = e.target;
 		showModal('Confirmation needed', {
 			lowerText: 'Are you sure you want to delete this entry?',
@@ -176,7 +176,7 @@ const createEntryButtons = () => {
 	return entryButtonsContainer;
 };
 
-const createListEntry = (userInputText) => {
+const createListEntry = userInputText => {
 	const entryLine = createCustomNode('div', {
 		customClassname: 'list-entry',
 		draggable: true,
@@ -186,10 +186,11 @@ const createListEntry = (userInputText) => {
 		text: userInputText,
 	});
 	addElementsToContainer(entryLine, [entryText, createEntryButtons()]);
+	addDraggingFunc(entryLine);
 	return entryLine;
 };
 
-const sortEntryList = (clickedElement) => {
+const sortEntryList = clickedElement => {
 	disableEditMode();
 	const list = clickedElement
 		.closest('.list-container')
