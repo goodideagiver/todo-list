@@ -54,17 +54,18 @@ const addDraggingFunc = targetElement => {
 const dragOverHandler = container => {
 	const entries = container.getElementsByClassName('list-entry');
 	container.addEventListener('dragover', e => {
-		console.log(getDragElement(container, e.clientY));
+		//console.log(getDragElement(container, e.clientY));
 		//container.append(document.querySelector('.dragging'));
 		const checkPos = getDragElement(container, e.clientY);
 		if (checkPos.offset === -Infinity) {
 			container.append(document.querySelector('.dragging'));
-			console.log('dodaj na koncu');
+			return;
 		} else if (checkPos.element !== undefined) {
-			container.insertAdjacentElement('afterend', checkPos.element);
-			console.log('dodaj za elementem');
+			document
+				.querySelector('.dragging')
+				.insertAdjacentElement('afterend', checkPos.element);
+			return;
 		} else {
-			console.log('chuj');
 			return;
 		}
 	});
