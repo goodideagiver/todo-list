@@ -20,14 +20,15 @@
 // };
 
 const addDraggingFunc = targetElement => {
-	const entry = targetElement;
-	entry.addEventListener('dragstart', () => {
-		entry.classList.add('dragging');
-		entry.addEventListener('dragend', () => {
-			entry.classList.remove('dragging');
+	targetElement.addEventListener('dragstart', () => {
+		targetElement.classList.add('dragging');
+		targetElement.addEventListener('dragend', () => {
+			targetElement.classList.remove('dragging');
 		});
 	});
 };
+
+const dragOverHandler = container => {};
 
 // const launchDragging = () => {
 // 	document.querySelectorAll('.list-entry').forEach(draggable => {
