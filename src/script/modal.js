@@ -1,9 +1,20 @@
 const modalBackdrop = document.querySelector('.modal-container');
-modalBackdrop.style.display = 'none';
+
+const toggleBackdrop = toggle => {
+	if (toggle) {
+		modalBackdrop.classList.add('backdrop-visible');
+	} else {
+		modalBackdrop.classList.remove('backdrop-visible');
+	}
+};
 
 const disableModal = () => {
-	document.querySelector('.modal-box').remove();
-	modalBackdrop.style.display = 'none';
+	const modal = document.querySelector('.modal-box');
+	modal.classList.add('modal-remove');
+	setTimeout(() => {
+		modal.remove();
+		toggleBackdrop(false);
+	}, 100);
 };
 
 const modalGenerator = (title, modal) => {
@@ -48,12 +59,12 @@ const modalGenerator = (title, modal) => {
 };
 
 const showModal = (title, modal) => {
-	modalBackdrop.style.display = '';
+	toggleBackdrop(true);
 	const newModal = modalGenerator(title, modal);
 	modalBackdrop.append(newModal);
 	newModal.querySelector('.modal-action').lastElementChild.focus();
 };
 
-modalBackdrop.addEventListener('click', (e) => {
-	e.target === modalBackdrop ? disableModal() : 0;
-});
+modalBackdrop.addEventListener('click', e =>
+	e.target === modalBackdrop ? disableModal() : 0
+);

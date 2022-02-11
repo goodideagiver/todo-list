@@ -16,6 +16,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: opacity 0.5s, visibility 0.5s;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.backdrop-visible {
+	transition: opacity 0.5s, visibility 0.5s;
+	visibility: visible;
+	opacity: 1;
 }
 
 .modal-box {
@@ -61,4 +70,17 @@
 	to {
 		transform: scale(1);
 	}
+}
+
+@keyframes modal-hide {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(0);
+	}
+}
+
+.modal-remove {
+	animation: modal-hide 0.1s forwards;
 }
