@@ -240,6 +240,7 @@ body {
 			outline: 1px var(--outline-and-border) solid;
 		}
 	}
+	transition: transform 0.5s;
 	margin: 5px;
 	display: flex;
 	gap: 10px;
@@ -353,4 +354,5 @@ body {
 	border: 2px blue dashed;
 	cursor: grabbing;
 	transform: scale(0.98);
+	padding: 10px;
 }
