@@ -36,9 +36,7 @@ const getDragElement = (container, y) => {
 		{
 			offset: Number.NEGATIVE_INFINITY,
 		}
-	);
-
-	//return dragoverElements;
+	).element;
 };
 
 const addDraggingFunc = targetElement => {
@@ -47,6 +45,7 @@ const addDraggingFunc = targetElement => {
 
 		targetElement.addEventListener('dragend', () => {
 			targetElement.classList.remove('dragging');
+			saveChanges();
 		});
 	});
 };
@@ -56,17 +55,13 @@ const dragOverHandler = container => {
 	container.addEventListener('dragover', e => {
 		//console.log(getDragElement(container, e.clientY));
 		//container.append(document.querySelector('.dragging'));
+		e.preventDefault();
 		const checkPos = getDragElement(container, e.clientY);
-		if (checkPos.offset === -Infinity) {
-			container.append(document.querySelector('.dragging'));
-			return;
-		} else if (checkPos.element !== undefined) {
-			document
-				.querySelector('.dragging')
-				.insertAdjacentElement('afterend', checkPos.element);
-			return;
+		const currentlyDragging = document.querySelector('.dragging');
+		if (checkPos == null) {
+			container.append(currentlyDragging);
 		} else {
-			return;
+			container.insertBefore(currentlyDragging, checkPos);
 		}
 	});
 };
