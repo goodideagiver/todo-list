@@ -19,7 +19,7 @@ const saveChanges = () => {
 		};
 		lists.push(listObj);
 	});
-	console.log('Saving lists', lists);
+	//console.log('Saving lists', lists);
 	localStorage.setItem('lists', JSON.stringify(lists));
 };
 
