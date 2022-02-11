@@ -88,6 +88,7 @@ body {
 	}
 	button {
 		align-items: center;
+		justify-content: center;
 		padding: 10px;
 		font-size: 1.2rem;
 		display: flex;
@@ -105,6 +106,10 @@ body {
 		&:active {
 			transform: scale(0.95);
 		}
+	}
+	.input-div {
+		flex-basis: 300px !important;
+		flex-shrink: 0;
 	}
 }
 

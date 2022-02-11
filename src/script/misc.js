@@ -67,7 +67,6 @@ const toggleTheme = () => {
 
 const setThemeOnLaunch = () => {
 	const savedTheme = localStorage.getItem('darkmode');
-	console.log(savedTheme);
 	if (savedTheme === 'true') {
 		document.body.classList.add('dark-mode');
 		document.body.classList.remove('light-mode');
