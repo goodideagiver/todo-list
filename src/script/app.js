@@ -28,37 +28,15 @@ const createListObject = (listName, ...entries) => {
 	return obj;
 };
 
-// const todoListApp = {
-// 	list: {
-// 		create: createFullList,
-// 		listItem: {
-// 			create: {
-// 				entry: createListEntry,
-// 			},
-// 		},
-// 	},
-// };
-
-// todoListApp.list.create('Test list', ['test']);
-
-const getEntriesText = (parentList) => {
+const getEntriesText = parentList => {
 	let textList = [];
-	parentList.querySelectorAll('.list-entry').forEach((element) => {
+	parentList.querySelectorAll('.list-entry').forEach(element => {
 		textList.push(element.querySelector('.user-entry-text').innerText);
 	});
 	return textList;
 };
 
-//saveChanges();
-
-if (localStorage.getItem('lists')) {
-	const lists = JSON.parse(localStorage.getItem('lists'));
-	console.log('loaded from local storage', lists);
-	mainListNodeContainer.innerHTML = '';
-	for (let i = 0; i < lists.length; i++) {
-		createFullList(lists[i].listName, lists[i].listEntries);
-	}
-} else {
+const createDefaultLists = () => {
 	const lists = [
 		createListObject(
 			'Super fun list name',
@@ -76,7 +54,18 @@ if (localStorage.getItem('lists')) {
 			'Lorem ipsum'
 		),
 	];
-	lists.forEach((list) => {
+	lists.forEach(list => {
 		createFullList(list.name, list.entries);
 	});
+};
+
+if (localStorage.getItem('lists')) {
+	const lists = JSON.parse(localStorage.getItem('lists'));
+	console.log('loaded from local storage', lists);
+	mainListNodeContainer.innerHTML = '';
+	for (let i = 0; i < lists.length; i++) {
+		createFullList(lists[i].listName, lists[i].listEntries);
+	}
+} else {
+	createDefaultLists();
 }

@@ -90,6 +90,7 @@
 		<script defer src="src/script/listEntry.js"></script>
 		<script defer src="src/script/listNode.js"></script>
 		<script defer src="src/script/app.js"></script>
+		<script defer src="src/script/options.js"></script>
 		<!-- Primary Meta Tags -->
 		<title>To do list</title>
 		<link rel="stylesheet" href="src/style/css/min/modal.min.css" />
@@ -128,10 +129,16 @@ Create multiple to do lists and edit them as you like."
 	<body class="light-mode">
 		<main id="app">
 			<nav class="main-app-nav">
-				<button id="switchTheme"><i class="fas fa-adjust"></i></button>
+				<button class="options">
+					<i class="fas fa-cog"></i>
+				</button>
+				<button id="switchTheme">
+					<i class="fas fa-adjust"></i>
+				</button>
 				<button id="addList">
 					<i class="fas fa-plus"></i>
 				</button>
+
 				<div class="input-div">
 					<label for="listName">List name</label>
 					<input id="listName" type="text" placeholder="Enter list name here" />
