@@ -51,7 +51,11 @@ const createDefaultLists = () => {
 		createListObject(
 			'Thats fun',
 			'Check links at the bottom to check out more of my projects',
-			'Lorem ipsum'
+			'Lorem ipsum',
+			'Try',
+			'Using',
+			'Sort feature',
+			'On this list'
 		),
 	];
 	lists.forEach(list => {
