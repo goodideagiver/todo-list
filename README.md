@@ -12,7 +12,7 @@ Available features:
 - add new entry
 - add new list
 - change color theme
-- confirm input using enter on desktop or return button on mobile
+- drag and drop list entry
 - list data is stored in local storage
 
 Link: https://goodideagiver.github.io/todo-list/
