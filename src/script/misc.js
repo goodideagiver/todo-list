@@ -32,6 +32,7 @@ const addElementsToContainer = (container, elementsArray) => {
 const clickElementOnEnterPress = (element, elementToPress) => {
 	element.addEventListener('keyup', e => {
 		if (e.keyCode === 13) {
+			element.blur();
 			e.preventDefault();
 			elementToPress.click();
 		}
