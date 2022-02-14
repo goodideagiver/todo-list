@@ -44,18 +44,16 @@ const createDefaultLists = () => {
 			'You can edit and move entries'
 		),
 		createListObject(
-			'Second list, wow',
-			'You can create as many lists as you like',
-			'Lists are stored in your browser memory :O'
-		),
-		createListObject(
-			'Thats fun',
-			'Check links at the bottom to check out more of my projects',
-			'Lorem ipsum',
 			'Try',
 			'Using',
 			'Sort feature',
-			'On this list'
+			'On this list',
+			'Check links at the bottom to check out more of my projects'
+		),
+		createListObject(
+			'Third list, wow',
+			'You can create as many lists as you like',
+			'Lists are stored in your browser memory :O'
 		),
 	];
 	lists.forEach(list => {
