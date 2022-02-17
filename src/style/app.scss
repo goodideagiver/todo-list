@@ -88,7 +88,6 @@ body {
 	}
 	button {
 		align-items: center;
-		justify-content: center;
 		padding: 10px;
 		font-size: 1.2rem;
 		display: flex;
@@ -106,10 +105,6 @@ body {
 		&:active {
 			transform: scale(0.95);
 		}
-	}
-	.input-div {
-		flex-basis: 300px !important;
-		flex-shrink: 0;
 	}
 }
 
@@ -240,7 +235,6 @@ body {
 			outline: 1px var(--outline-and-border) solid;
 		}
 	}
-	transition: transform 0.5s;
 	margin: 5px;
 	display: flex;
 	gap: 10px;
@@ -306,7 +300,6 @@ body {
 		font-size: 1.2rem;
 	}
 	ul {
-		margin-top: 10px;
 		list-style: none;
 		display: flex;
 		justify-content: center;
@@ -355,5 +348,4 @@ body {
 	border: 2px blue dashed;
 	cursor: grabbing;
 	transform: scale(0.98);
-	padding: 10px;
 }
